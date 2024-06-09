@@ -233,9 +233,7 @@ var render = function (time) {
         ukko.rotation.x += 0.02;
     }
 
-    cam2.position.set(
-	    5 + Math.sin(time/4)/4, 2,
-	   -5 - Math.sin(time/4)/4);
+    cam2.position.set(5+Math.sin(time/4)/4, 2,-5-Math.sin(time/4)/4);
 
     renderer.setRenderTarget(render_target);
     renderer.render(scene, cam2);
