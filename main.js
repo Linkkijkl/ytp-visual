@@ -13,7 +13,8 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 // import { OBJLoader } from 'three/addons/loaders/OBJloader.js';
 
 // Degrees to radians.
-const dtr = 3.1415/180;
+const pi = 3.1415;
+const dtr = pi/180;
 
 // Aspect ratio
 var aspect = window.innerWidth / window.innerHeight;
@@ -46,7 +47,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // The render target for camera 2, for the monitor
-var render_target = new THREE.WebGLRenderTarget(120, 120);
+var render_target = new THREE.WebGLRenderTarget(120, 90);
 render_target.texture.magFilter = THREE.NearestFilter;
 render_target.texture.minFilter = THREE.NearestFilter;
 var cam2 = new THREE.PerspectiveCamera(75, 4/3, 1, 100);
@@ -107,8 +108,7 @@ var monitor_group = new THREE.Group();
 // Monitor power light cube
 var monitor_power_light = new THREE.Mesh(
     new THREE.BoxGeometry(0.05, 0.05, 0.05), 
-    new THREE.MeshBasicMaterial({color: 0x66ff00})
-);
+    new THREE.MeshBasicMaterial({color: 0x66ff00}));
 monitor_power_light.position.set(0.65,0.57,0.82);
 monitor_group.add(monitor_power_light);
 // Monitor power light light
@@ -118,9 +118,10 @@ monitor_group.add(monitor_power_light_L);
 
 // monitor screen materials
 // ytp-texture
-var monitor_material1 = new THREE.MeshBasicMaterial(
-    {map: new THREE.TextureLoader().load("jami.png")}
-);
+var monitor_material1 = new THREE.MeshBasicMaterial({
+    map: new THREE.TextureLoader().load("jami.png")
+});
+
 // render target texutre (from cam2)
 var monitor_material3 = new THREE.MeshBasicMaterial({
     map: render_target.texture
@@ -225,12 +226,16 @@ var render = function (time) {
         kolmio = true;
     }
     if (monitor_loaded) {
-        monitor_group.position.y = Math.sin(time)/6 + 0.30;
+        monitor_group.position.y = Math.sin(time/2)/6 + 0.30;
     }
     if (ukko_loaded) {
         ukko.rotation.y += 0.01;
         ukko.rotation.x += 0.02;
     }
+
+    cam2.position.set(
+	    5 + Math.sin(time/4)/4, 2,
+	   -5 - Math.sin(time/4)/4);
 
     renderer.setRenderTarget(render_target);
     renderer.render(scene, cam2);
