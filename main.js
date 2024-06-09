@@ -1,44 +1,54 @@
 /*
 ATK-YTP 24 juttu
 author: Vili Kärkkäinen
-
 monitor texture: Jami Virtanen
-kolmio ukko: joku emt
 */
 
 import * as THREE from 'three';
-import { OBJLoader } from 'three/addons/loaders/OBJloader.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFloader.js';
 
+// If for some reason the loader is in a different place,
+// try the another import. For me the one above worked on 
+// linux and the one below on windows.
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
+// import { OBJLoader } from 'three/addons/loaders/OBJloader.js';
+
+// Degrees to radians.
 const dtr = 3.1415/180;
 
-
-var aspect;
+// Aspect ratio
+var aspect = window.innerWidth / window.innerHeight;
+// to use when sceen changes size
 window.addEventListener( 'resize', resize_callback, false );
 function resize_callback(){
 
     aspect = window.innerWidth / window.innerHeight;
     camera.aspect = aspect;
     camera.updateProjectionMatrix();
-
     renderer.setSize( window.innerWidth, window.innerHeight );
 
 }
 
+
+// The three.js scene
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xffc1cc);
-aspect = window.innerWidth / window.innerHeight;
+
+// The three.js camera
 const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 100);
 camera.position.z = 2.5;
 camera.position.y = 1;
 
+// The three.js renderer
 const renderer = new THREE.WebGLRenderer();
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+// The render target for camera 2, for the monitor
 var render_target = new THREE.WebGLRenderTarget(120, 120);
+render_target.texture.magFilter = THREE.NearestFilter;
+render_target.texture.minFilter = THREE.NearestFilter;
 var cam2 = new THREE.PerspectiveCamera(75, 4/3, 1, 100);
 cam2.position.set(0, 2, -7);
 
@@ -71,7 +81,7 @@ var planeGeometry = new THREE.PlaneGeometry( 20, 20, 1, 1 );
 // Spoof texture so that uv's are in use
 const spoof = new THREE.Texture();
 var plane_material = new THREE.MeshPhongMaterial({map: spoof});
-// inject custom glsl
+// inject custom glsl (might want to improve)
 plane_material.onBeforeCompile = function(shader) {
     shader.fragmentShader = shader.fragmentShader.replace(
         '#include <map_fragment>',
@@ -88,32 +98,34 @@ plane_material.onBeforeCompile = function(shader) {
 var plane = new THREE.Mesh( planeGeometry, plane_material );
 plane.receiveShadow = true;
 plane.rotation.x = -90 * dtr;
-plane.position.z = 0.0;
 scene.add( plane );
 
 // MONITOR
 var monitor_group = new THREE.Group();
+
+// Monitor power light cube
 var monitor_power_light = new THREE.Mesh(
     new THREE.BoxGeometry(0.05, 0.05, 0.05), 
     new THREE.MeshBasicMaterial({color: 0x66ff00})
 );
 monitor_power_light.position.set(0.65,0.57,0.82);
 monitor_group.add(monitor_power_light);
-
+// Monitor power light light
 var monitor_power_light_L = new THREE.PointLight(0x66ff00, 0.03, 0.2);
 monitor_power_light_L.position.set(0.65,0.57,0.85);
 monitor_group.add(monitor_power_light_L);
 
+// monitor screen materials
+// ytp-texture
 var monitor_material1 = new THREE.MeshBasicMaterial(
     {map: new THREE.TextureLoader().load("jami.png")}
 );
-
-render_target.texture.magFilter = THREE.NearestFilter;
-render_target.texture.minFilter = THREE.NearestFilter;
+// render target texutre (from cam2)
 var monitor_material3 = new THREE.MeshBasicMaterial({
     map: render_target.texture
 });
 
+// Monitor screen
 var monitor_screen = new THREE.Mesh(
     new THREE.PlaneGeometry(1.5,1.2,1,1),
     monitor_material1
@@ -122,6 +134,7 @@ monitor_screen.position.set(0, 1.27, 0.67);
 monitor_screen.rotation.x = -8.2 * dtr;
 monitor_group.add(monitor_screen);
 
+// Load the monitor shell obj file
 var monitor_loaded = false;
 const obj_loader = new OBJLoader();
 obj_loader.load('/monitori.obj',
@@ -148,17 +161,21 @@ obj_loader.load('/monitori.obj',
         console.error(error);
     });
 
+// List of columns
 var pylvaeaet = [];
 var pylvaes_loaded = false;
 obj_loader.load('pylvaes.obj',
     function ( obj ) {
+	// Simple marble colour. Could use a texture.
         var pylvaes_material = new THREE.MeshPhongMaterial( {color: 0xe3e0cd} );
+	// Get the geometry from the loaded object
         var pylvaes_geom;
         obj.traverse( function( child ) {
             if ( child instanceof THREE.Mesh ) {
                 pylvaes_geom = child.geometry;
             }
         });
+	// Add meshes created of the geometry and the material to the column array
         for (var i = 0; i < 6; i++) {
             var mesh = new THREE.Mesh(pylvaes_geom, pylvaes_material);
             mesh.scale.set(0.4, 0.4, 0.4);
@@ -168,6 +185,7 @@ obj_loader.load('pylvaes.obj',
             pylvaeaet.push(mesh);
             scene.add(mesh);
         }
+	// Set the column positions
         pylvaeaet[0].position.set( 3.2, 1.95,  0);
         pylvaeaet[1].position.set( 3.2, 1.95, -2);
         pylvaeaet[2].position.set( 3.2, 1.95, -4);
@@ -192,7 +210,6 @@ var ukko = new THREE.Mesh(
     cam2.lookAt(ukko.position)
     ukko_loaded = true;
 */
-
 var kolmio = false;
 var matswitch = 0.0;
 var render = function (time) {
