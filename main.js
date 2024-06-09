@@ -50,7 +50,8 @@ var render_target = new THREE.WebGLRenderTarget(120, 120);
 render_target.texture.magFilter = THREE.NearestFilter;
 render_target.texture.minFilter = THREE.NearestFilter;
 var cam2 = new THREE.PerspectiveCamera(75, 4/3, 1, 100);
-cam2.position.set(0, 2, -7);
+cam2.position.set(5, 2, -5);
+cam2.lookAt(new THREE.Vector3(0, 1, 0));
 
 // LIGHTS
 var directionalLight1 = new THREE.DirectionalLight( 0xffff00, 1 );
@@ -179,8 +180,6 @@ obj_loader.load('pylvaes.obj',
         for (var i = 0; i < 6; i++) {
             var mesh = new THREE.Mesh(pylvaes_geom, pylvaes_material);
             mesh.scale.set(0.4, 0.4, 0.4);
-            mesh.position.y = 1.95;
-            mesh.position.z = -2;
             mesh.receiveShadow = true;
             pylvaeaet.push(mesh);
             scene.add(mesh);
@@ -215,9 +214,6 @@ var matswitch = 0.0;
 var render = function (time) {
     time = time/1000;
     requestAnimationFrame(render);
-
-    cam2.position.x = Math.sin(time) * 3;
-    cam2.lookAt(new THREE.Vector3());
 
     if (kolmio && time - matswitch > 4) {
         monitor_screen.material = monitor_material1;
