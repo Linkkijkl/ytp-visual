@@ -39,10 +39,8 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 var render_target = new THREE.WebGLRenderTarget(120, 120);
-render_target.texture.magFilter = THREE.NearestFilter;
-render_target.texture.minFilter = THREE.NearestFilter;
 var cam2 = new THREE.PerspectiveCamera(75, 4/3, 1, 100);
-cam2.position.set(0, 1, 8);
+cam2.position.set(0, 2, -7);
 
 // LIGHTS
 var directionalLight1 = new THREE.DirectionalLight( 0xffff00, 1 );
@@ -110,6 +108,8 @@ var monitor_material1 = new THREE.MeshBasicMaterial(
     {map: new THREE.TextureLoader().load("jami.png")}
 );
 
+render_target.texture.magFilter = THREE.NearestFilter;
+render_target.texture.minFilter = THREE.NearestFilter;
 var monitor_material3 = new THREE.MeshBasicMaterial({
     map: render_target.texture
 });
@@ -148,21 +148,59 @@ obj_loader.load('/monitori.obj',
         console.error(error);
     });
 
+var pylvaeaet = [];
+var pylvaes_loaded = false;
+obj_loader.load('pylvaes.obj',
+    function ( obj ) {
+        var pylvaes_material = new THREE.MeshPhongMaterial( {color: 0xe3e0cd} );
+        var pylvaes_geom;
+        obj.traverse( function( child ) {
+            if ( child instanceof THREE.Mesh ) {
+                pylvaes_geom = child.geometry;
+            }
+        });
+        for (var i = 0; i < 6; i++) {
+            var mesh = new THREE.Mesh(pylvaes_geom, pylvaes_material);
+            mesh.scale.set(0.4, 0.4, 0.4);
+            mesh.position.y = 1.95;
+            mesh.position.z = -2;
+            mesh.receiveShadow = true;
+            pylvaeaet.push(mesh);
+            scene.add(mesh);
+        }
+        pylvaeaet[0].position.set( 3.2, 1.95,  0);
+        pylvaeaet[1].position.set( 3.2, 1.95, -2);
+        pylvaeaet[2].position.set( 3.2, 1.95, -4);
+        pylvaeaet[3].position.set(-3.2, 1.95,  0);
+        pylvaeaet[4].position.set(-3.2, 1.95, -2);
+        pylvaeaet[5].position.set(-3.2, 1.95, -4);
+        pylvaes_loaded = true;
+    },
+    undefined,
+    function (error) {
+        console.error(error);
+    });
+
 var ukko_loaded = false;
+/*
 var ukko = new THREE.Mesh(
     new THREE.BoxGeometry(1, 1, 1), 
     new THREE.MeshPhongMaterial({color: 0xffffff}));
-
-ukko.position.set(0, 1, 10);
-scene.add(ukko);
-cam2.lookAt(ukko.position)
-ukko_loaded = true;
+    
+    ukko.position.set(0, 1, 10);
+    scene.add(ukko);
+    cam2.lookAt(ukko.position)
+    ukko_loaded = true;
+*/
 
 var kolmio = false;
 var matswitch = 0.0;
 var render = function (time) {
     time = time/1000;
     requestAnimationFrame(render);
+
+    cam2.position.x = Math.sin(time) * 3;
+    cam2.lookAt(new THREE.Vector3());
 
     if (kolmio && time - matswitch > 4) {
         monitor_screen.material = monitor_material1;
