@@ -55,15 +55,15 @@ directionalLight2.position.set(2,2,-2);
 directionalLight2.castShadow = true;
 scene.add( directionalLight2 );
 
-var directionalLight2 = new THREE.DirectionalLight( 0x00ffff, 1 );
-directionalLight2.position.set(-2,2,-2);
-directionalLight2.castShadow = true;
-scene.add( directionalLight2 );
+var directionalLight3 = new THREE.DirectionalLight( 0x00ffff, 1 );
+directionalLight3.position.set(-2,2,-2);
+directionalLight3.castShadow = true;
+scene.add( directionalLight3 );
 
-var directionalLight2 = new THREE.DirectionalLight( 0xffffff, 1 );
-directionalLight2.position.set(2,2,2);
-directionalLight2.castShadow = true;
-scene.add( directionalLight2 );
+var directionalLight4 = new THREE.DirectionalLight( 0xffffff, 1 );
+directionalLight4.position.set(2,2,2);
+directionalLight4.castShadow = true;
+scene.add( directionalLight4 );
 
 var ambient = new THREE.AmbientLight(0xffc1cc, 1);
 scene.add(ambient);

@@ -2,7 +2,8 @@
 
 ATK-YTP 24 visual stuff
 
-To run, you need [node.js](https://nodejs.org/en/download/package-manager)
+To run, you need [node.js](https://nodejs.org/en/download/package-manager).
+
 Also you'll need three.js and vite, install them using npm like this:
 
 ```
