@@ -44,7 +44,8 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // The render target for camera 2, for the monitor screen
-var render_target = new THREE.WebGLRenderTarget(120, 90, {
+var res = 30;
+var render_target = new THREE.WebGLRenderTarget(4 * res, 3 * res, {
 	magFilter: THREE.NearestFilter,
 	minFilter: THREE.NearestFilter
 });
@@ -217,7 +218,7 @@ obj_loader.load('tri.obj',
 var ytp_texts_loaded = false;
 obj_loader.load('ytp.obj',
     function ( obj ) {
-        var text_material = new THREE.MeshPhongMaterial({color: 0xff3f0f});
+        var text_material = new THREE.MeshPhongMaterial({color: 0xff8800});
 	var text_geom;
 	obj.traverse(function(child) {
 	    if (child instanceof THREE.Mesh) {
@@ -241,7 +242,7 @@ obj_loader.load('ytp.obj',
 
 // Create the monitor scene
 const monitor_scene = new THREE.Scene();
-//monitor_scene.background = new THREE.Color(0xffc1cc);
+monitor_scene.background = new THREE.Color(0xffc1cc);
 monitor_scene.add(logo_group);
 logo_group.position.y = 0.05;
 var mon_sce_dir_lig = new THREE.DirectionalLight(0xffffff, 2);
@@ -267,11 +268,12 @@ var render = function (time) {
         switch_time = time;
         logo3d = true;
     }
+
     if (monitor_loaded) {
         monitor_group.position.y = Math.sin(time/2)/6 + 0.35;
     }
     if (kolmio_loaded && ytp_texts_loaded) {
-        logo_group.rotation.y = 2 * (time - switch_time);
+        logo_group.rotation.y = -2 * (time - switch_time);
     }
 
 
