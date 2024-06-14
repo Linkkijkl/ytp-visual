@@ -11,7 +11,6 @@ import * as THREE from 'three';
 // linux and the one below on windows.
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 // import { OBJLoader } from 'three/addons/loaders/OBJloader.js';
-import { CSS2DRenderer } from 'three/examples/jsm/renderers/CSS2DRenderer.js';
 
 // Degrees to radians.
 const pi = 3.1415;
@@ -30,13 +29,15 @@ function resize_callback(){
 
 // The three.js scene
 const main_scene = new THREE.Scene();
-main_scene.background = new THREE.Color(0xffc1cc);
+var bg_tex = new THREE.TextureLoader().load('bg.jpg');
+bg_tex.minFilter = THREE.NearestFilter;
+bg_tex.maFilter = THREE.NearestFilter;
+main_scene.background = bg_tex;
 
 // The three.js camera
 const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 100);
 camera.position.z = 4;
 camera.position.y = 2;
-camera.rotation.x = -0 * dtr;
 
 // The three.js renderer
 const renderer = new THREE.WebGLRenderer();
@@ -46,24 +47,24 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // The render target for camera 2, for the monitor screen
-var res = 30;
+var res = 25;
 var render_target3D = new THREE.WebGLRenderTarget(4 * res, 3 * res, {
 	magFilter: THREE.NearestFilter,
 	minFilter: THREE.NearestFilter
 });
 
 // LIGHTS
-var directionalLight1 = new THREE.DirectionalLight( 0xffff00, 1 );
+var directionalLight1 = new THREE.DirectionalLight( 0xffffff, 1 );
 directionalLight1.position.set(-2,2,2);
 directionalLight1.castShadow = true;
 main_scene.add( directionalLight1 );
 
-var directionalLight2 = new THREE.DirectionalLight( 0xff00ff, 1 );
+var directionalLight2 = new THREE.DirectionalLight( 0xffffff, 1 );
 directionalLight2.position.set(2,2,-2);
 directionalLight2.castShadow = true;
 main_scene.add( directionalLight2 );
 
-var directionalLight3 = new THREE.DirectionalLight( 0x00ffff, 1 );
+var directionalLight3 = new THREE.DirectionalLight( 0xffffff, 1 );
 directionalLight3.position.set(-2,2,-2);
 directionalLight3.castShadow = true;
 main_scene.add( directionalLight3 );
@@ -76,32 +77,37 @@ main_scene.add( directionalLight4 );
 var ambient = new THREE.AmbientLight(0xffc1cc, 1);
 main_scene.add(ambient);
 
-/*
-var sphere = new THREE.Mesh(
+
+var sphere = new THREE.InstancedMesh(
 	new THREE.SphereGeometry(1, 16, 16), 
 	new THREE.MeshPhongMaterial({
 	color: 0xFF69B4,
 	emissive: 0xFF69B4,
 	specular: 0XFF69B4,
 	shininess: 100,
-	}));
+	}), 3);
 sphere.castShadow = true;
 sphere.receiveShadow = true;
-sphere.position.set(2, 1, -4)
+sphere.setMatrixAt(0, new THREE.Matrix4(1, 0, 0, 2, 0, 1, 0, 1, 0, 0, 1, -4, 0, 0, 0, 1));
+sphere.setMatrixAt(1, new THREE.Matrix4(1, 0, 0, 4.5, 0, 1, 0, 1, 0, 0, 1, -1, 0, 0, 0, 1));
+sphere.setMatrixAt(2, new THREE.Matrix4(1, 0, 0, -6, 0, 1, 0, 1, 0, 0, 1, -2, 0, 0, 0, 1));
 main_scene.add(sphere);
-*/
 
-var info = new THREE.Mesh(
-	new THREE.PlaneGeometry(2, 1, 1, 1), 
+var info_tex = new THREE.TextureLoader().load("info.png");
+info_tex.minFilter = THREE.NearestFilter;
+info_tex.magFilter = THREE.NearestFilter;
+var info = new THREE.InstancedMesh(
+	new THREE.PlaneGeometry(2.5, 1, 1, 1), 
 	new THREE.MeshBasicMaterial({
-	    map: new THREE.TextureLoader().load("info.png", {
-		    minFilter: THREE.NearestFilter,
-		    magFilter: THREE.NearestFilter,
-	        })
-	}));
-info.position.x = 2;
-info.position.z = 1.5;
-info.rotation.y = -8*dtr;
+	    map: info_tex,
+	}), 8);
+for (var i = 0; i < 8; ++i) {
+    let x = -0.53 + (i/8);
+    let y = 3.1 - (i/(8*2));
+    let z = 1.4 + 0.01 * i;
+    info.setMatrixAt(i, new THREE.Matrix4(1, 0, 0, x, 0, 1, 0, y, 0, 0, 1, z, 0, 0, 0, 1));
+}
+info.castShadow = true;
 main_scene.add(info);
 
 // PLANE
@@ -194,7 +200,6 @@ obj_loader.load('/monitori.obj',
     });
 
 // List of columns
-var pylvaeaet = [];
 var pylvaes_loaded = false;
 obj_loader.load('pylvaes.obj',
     function ( obj ) {
@@ -208,23 +213,21 @@ obj_loader.load('pylvaes.obj',
             }
         });
 	// Add meshes created of the geometry and the material to the column array
-        for (var i = 0; i < 8; i++) {
-            var mesh = new THREE.Mesh(pylvaes_geom, pylvaes_material);
-            mesh.scale.set(0.5, 0.5, 0.5);
-            mesh.receiveShadow = true;
-            pylvaeaet.push(mesh);
-            main_scene.add(mesh);
-        }
-	let h = 1.95 * 5/4;
-	// Set the column positions
-        pylvaeaet[0].position.set( 5, h,  0.5);
-        pylvaeaet[1].position.set( 5, h, -2  );
-        pylvaeaet[2].position.set( 5, h, -4.5);
-	pylvaeaet[3].position.set( 5, h, -7  );
-        pylvaeaet[4].position.set(-5, h,  0.5);
-        pylvaeaet[5].position.set(-5, h, -2  );
-        pylvaeaet[6].position.set(-5, h, -4.5);
-        pylvaeaet[7].position.set(-5, h, -7  );
+        var mesh = new THREE.InstancedMesh(pylvaes_geom, pylvaes_material, 8);
+        mesh.receiveShadow = true;
+        main_scene.add(mesh);
+
+	    let h = 1.95 * 5/4;
+        let px = 4;
+	    // Set the column positions
+        mesh.setMatrixAt(0, new THREE.Matrix4(0.5, 0, 0, px, 0, 0.5, 0, h, 0, 0, 0.5, 0.5, 0, 0, 0, 1));
+        mesh.setMatrixAt(1, new THREE.Matrix4(0.5, 0, 0, px, 0, 0.5, 0, h, 0, 0, 0.5, -2, 0, 0, 0, 1));
+        mesh.setMatrixAt(2, new THREE.Matrix4(0.5, 0, 0, px, 0, 0.5, 0, h, 0, 0, 0.5, -4.5, 0, 0, 0, 1));
+        mesh.setMatrixAt(3, new THREE.Matrix4(0.5, 0, 0, px, 0, 0.5, 0, h, 0, 0, 0.5, -7, 0, 0, 0, 1));
+        mesh.setMatrixAt(4, new THREE.Matrix4(0.5, 0, 0, -px, 0, 0.5, 0, h, 0, 0, 0.5, 0.5, 0, 0, 0, 1));
+        mesh.setMatrixAt(5, new THREE.Matrix4(0.5, 0, 0, -px, 0, 0.5, 0, h, 0, 0, 0.5, -2, 0, 0, 0, 1));
+        mesh.setMatrixAt(6, new THREE.Matrix4(0.5, 0, 0, -px, 0, 0.5, 0, h, 0, 0, 0.5, -4.5, 0, 0, 0, 1));
+        mesh.setMatrixAt(7, new THREE.Matrix4(0.5, 0, 0, -px, 0, 0.5, 0, h, 0, 0, 0.5, -7, 0, 0, 0, 1));
 	
         pylvaes_loaded = true;
     },
@@ -322,8 +325,13 @@ var render = function (time) {
     if (kolmio_loaded && ytp_texts_loaded) {
         logo_group.rotation.y = -2 * (time - switch_time);
     }
-    info.position.y = Math.sin(time)/4 + 2;
+    /*
+    info.position.y = Math.sin(time)/10 + 3;
+    info.position.x = Math.cos(time/2)/4;
+    */
 
+    // Pomppu & pomppu :D:D
+    // sphere.position.y = Math.abs(Math.sin(time)*2);
 
     renderer.setRenderTarget(render_target3D);
     renderer.render(monitor_scene, cam2);
