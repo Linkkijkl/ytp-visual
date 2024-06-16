@@ -37,6 +37,7 @@ var bg_tex = tex_loader.load('bg.jpg');
 bg_tex.minFilter = THREE.NearestFilter;
 bg_tex.maFilter = THREE.NearestFilter;
 main_scene.background = bg_tex;
+main_scene.fog = new THREE.Fog(0xff82f9, -4, 29);
 
 // The three.js camera
 const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 100);
@@ -81,12 +82,12 @@ main_scene.add(directionalLight4);
 var ambient = new THREE.AmbientLight(0xffc1cc, 1);
 main_scene.add(ambient);
 
+// Sum balls
 var sphere = new THREE.InstancedMesh(
     new THREE.SphereGeometry(1, 16, 16),
     new THREE.MeshPhongMaterial({
-        color: 0xFF69B4,
-        emissive: 0xFF69B4,
-        specular: 0XFF69B4,
+        color: 0x766cff,
+        emissive: 0x766cff,
         shininess: 100,
     }), 3);
 sphere.castShadow = true;
@@ -96,18 +97,18 @@ sphere.setMatrixAt(1, new THREE.Matrix4(1, 0, 0, 4.5, 0, 1, 0, 1, 0, 0, 1, -1, 0
 sphere.setMatrixAt(2, new THREE.Matrix4(1, 0, 0, -6, 0, 1, 0, 1, 0, 0, 1, -2, 0, 0, 0, 1));
 main_scene.add(sphere);
 
+// Info message plane
 var info_tex = tex_loader.load("info.png");
-info_tex.minFilter = THREE.NearestFilter;
-info_tex.magFilter = THREE.NearestFilter;
+var infoamnt = 3;
 var info = new THREE.InstancedMesh(
     new THREE.PlaneGeometry(2.5, 1, 1, 1),
     new THREE.MeshBasicMaterial({
         map: info_tex,
-    }), 8);
-for (var i = 0; i < 8; ++i) {
-    let x = -0.53 + (i / 8);
-    let y = 3.1 - (i / (8 * 2));
-    let z = 1.4 + 0.01 * i;
+    }), infoamnt);
+for (var i = 0; i < infoamnt; ++i) {
+    let x = 1.3 + (i / infoamnt);
+    let y = 1.4 - (i / (infoamnt * 2));
+    let z = 1.3 + 0.01 * i;
     info.setMatrixAt(i, new THREE.Matrix4(1, 0, 0, x, 0, 1, 0, y, 0, 0, 1, z, 0, 0, 0, 1));
 }
 info.castShadow = true;
@@ -240,7 +241,7 @@ obj_loader.load('pylvaes.obj',
 
 // Create the monitor scene
 const monitor_scene = new THREE.Scene();
-monitor_scene.background = new THREE.Color(0xffc1cc);
+monitor_scene.background = bg_tex;
 
 var logo_group = new THREE.Group();
 var kolmio_loaded = false;
@@ -323,7 +324,7 @@ monitor_scene.add(pacman_group);
 var mon_sce_dir_lig = new THREE.DirectionalLight(0xffffff, 2);
 mon_sce_dir_lig.position.set(0, 1, 1);
 monitor_scene.add(mon_sce_dir_lig);
-var mon_sce_amb_lig = new THREE.AmbientLight(0xffc1cc);
+var mon_sce_amb_lig = new THREE.AmbientLight(0xD99AF1);
 monitor_scene.add(mon_sce_amb_lig);
 var cam2 = new THREE.PerspectiveCamera(65, 4 / 3, 1, 100);
 cam2.position.set(0, 0, 2);
@@ -342,7 +343,7 @@ var render = function (time) {
 
     if (ytp && time - switch_time > 45) {
         mon_sce_dir_lig.position.set(-1, 1, 0);
-        cam2.rotation.y = -90*dtr;
+        cam2.rotation.y = -90 * dtr;
         switch_time = time;
         ytp = false;
     } else if (!ytp && time - switch_time > 15) {
@@ -359,13 +360,6 @@ var render = function (time) {
     if (pacman_loaded) {
         pacman_group.rotation.y = -time;
     }
-    /*
-    info.position.y = Math.sin(time)/10 + 3;
-    info.position.x = Math.cos(time/2)/4;
-    */
-
-    // Pomppu & pomppu :D:D
-    sphere.position.y = Math.sin(time)/10 + 0.5;
 
     renderer.setRenderTarget(render_target3D);
     renderer.render(monitor_scene, cam2);

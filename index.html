@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>ATK-YTP 24</title>
-		<style>
-			body { margin: 0; }
-		</style>
-	</head>
-	<body>
-		<!-- src can be switched around to make the visuals different -->
-		<script type="module" src="/main.js"></script>
-	</body>
-	<video id="video" hidden autoplay loop playsinline muted>
-		<source src="kolmio.webm">
-	</video>
+
+<head>
+	<meta charset="utf-8">
+	<title>ATK-YTP 2024</title>
+	<style>
+		@font-face {
+			font-family: MSpix;
+			src: url('fonts/MS_Sans_Serif_8pt.ttf');
+		}
+
+		#info {
+			position: absolute;
+			top: 3rem;
+			width: 100%;
+			text-align: center;
+			z-index: 10;
+			display: block;
+			font-family: MSpix;
+			font-size: 4rem;
+		}
+
+		body {
+			margin: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- src can be switched around to make the visuals different -->
+	<script type="module" src="/main.js"></script>
+	<div id="info" style="color: #000000; margin-left: -0.3rem; margin-top: -0.3rem;"></div>
+	<script>
+		var teksti = document.getElementById("info");
+		var h_hetki = new Date("Oct 16, 2024 12:00:00");
+		var x = setInterval(function () {
+			var nyt = new Date().getTime();
+			var aika = h_hetki - nyt;
+			var d = Math.floor(aika / (1000 * 60 * 60 * 24));
+			var h = Math.floor((aika % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var m = Math.floor((aika % (1000 * 60 * 60)) / (1000 * 60));
+			var s = Math.floor((aika % (1000 * 60)) / 1000);
+			teksti.innerHTML = "ATK-YTP t. <a href=\"https://linkkijkl.fi/\">Linkki</a> <BR>" + d + " päivää,<BR>" + h + " tuntia,<BR>" + m + " minuuttia,<BR>" + s + " sekuntia.";
+		}, 1000);
+	</script>
+</body>
+<video id="video" hidden autoplay loop playsinline muted>
+	<source src="kolmio.webm">
+</video>
+
 </html>
