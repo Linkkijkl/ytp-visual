@@ -18,7 +18,7 @@
 			z-index: 10;
 			display: block;
 			font-family: MSpix;
-			font-size: 4rem;
+			font-size: 3.5vw;
 		}
 
 		body {
@@ -41,7 +41,7 @@
 			var h = Math.floor((aika % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 			var m = Math.floor((aika % (1000 * 60 * 60)) / (1000 * 60));
 			var s = Math.floor((aika % (1000 * 60)) / 1000);
-			teksti.innerHTML = "ATK-YTP t. <a href=\"https://linkkijkl.fi/\">Linkki</a> <BR>" + d + " päivää,<BR>" + h + " tuntia,<BR>" + m + " minuuttia,<BR>" + s + " sekuntia.";
+			teksti.innerHTML = "ATK-YTP<BR>" + d + " päivää,<BR>" + h + " tuntia,<BR>" + m + " minuuttia,<BR>" + s + " sekuntia.";
 		}, 1000);
 	</script>
 </body>
