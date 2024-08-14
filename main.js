@@ -31,6 +31,26 @@ function resize_callback() {
 const obj_loader = new OBJLoader();
 const tex_loader = new THREE.TextureLoader();
 
+// Raycaster for click
+const raycaster = new THREE.Raycaster();
+const pointer = new THREE.Vector2();
+var on_monitor_screen = false;
+
+function onPointerMove( event ) {
+	// calculate pointer position in normalized device coordinates
+	// (-1 to +1) for both components
+	pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	pointer.y = -( event.clientY / window.innerHeight ) * 2 + 1;
+}
+
+function onClick (event) {
+    if (event.button == 0) {
+        if (on_monitor_screen) {
+            window.open("https://linkkijkl.fi", '_blank');
+        }
+    }
+}
+
 // The three.js scene
 const main_scene = new THREE.Scene();
 var bg_tex = tex_loader.load('bg.jpg');
@@ -52,7 +72,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // The render target for camera 2, for the monitor screen
-var res = 30;
+var res = 20;
 var render_target3D = new THREE.WebGLRenderTarget(4 * res, 3 * res, {
     magFilter: THREE.NearestFilter,
     minFilter: THREE.NearestFilter
@@ -92,7 +112,7 @@ var sphere = new THREE.InstancedMesh(
     }), 3);
 sphere.castShadow = true;
 sphere.receiveShadow = true;
-sphere.setMatrixAt(0, new THREE.Matrix4(1, 0, 0, 2, 0, 1, 0, 1, 0, 0, 1, -4, 0, 0, 0, 1));
+sphere.setMatrixAt(0, new THREE.Matrix4(1, 0, 0, -0.4, 0, 1, 0, 1, 0, 0, 1, -8, 0, 0, 0, 1));
 sphere.setMatrixAt(1, new THREE.Matrix4(1, 0, 0, 4.5, 0, 1, 0, 1, 0, 0, 1, -1, 0, 0, 0, 1));
 sphere.setMatrixAt(2, new THREE.Matrix4(1, 0, 0, -6, 0, 1, 0, 1, 0, 0, 1, -2, 0, 0, 0, 1));
 main_scene.add(sphere);
@@ -180,7 +200,9 @@ monitor_group.add(monitor_screen);
 var monitor_loaded = false;
 obj_loader.load('/monitori.obj',
     function (obj) {
-        var monitor_material = new THREE.MeshPhongMaterial({ color: 0xF5F5DC });
+        var monitor_material = new THREE.MeshPhongMaterial({ 
+            color: 0xF5F5DC
+        });
         obj.traverse(function (child) {
             if (child instanceof THREE.Mesh) {
                 child.material = monitor_material;
@@ -239,10 +261,60 @@ obj_loader.load('pylvaes.obj',
         console.error(error);
     });
 
+var ytp_loaded = false;
+var ytp_handle;
+obj_loader.load('atk-ytp.obj',
+    function (obj) {
+        var ytp_mat = new THREE.MeshStandardMaterial({ 
+            color: 0xeeff44
+        });
+        obj.traverse(function (child) {
+            if (child instanceof THREE.Mesh) {
+                child.material = ytp_mat;
+                child.castShadow = true;
+            }
+        });
+        main_scene.add(obj);
+        obj.scale.set(1.5,1.5,0.3);
+        ytp_handle = obj;
+        ytp_loaded = true;
+    },
+    undefined,
+    function (error) {
+        console.error(error);
+    }
+);
+
+var jkl_loaded = false;
+var jkl_handle;
+obj_loader.load('jkl.obj',
+    function (obj) {
+        var jkl_mat = new THREE.MeshStandardMaterial({
+            color: 0xffaa22,
+        });
+        obj.traverse(function (child) {
+            if (child instanceof THREE.Mesh) {
+                child.material = jkl_mat;
+                child.castShadow = true;
+            }
+        });
+        main_scene.add(obj);
+        obj.scale.set(0.4,0.4,0.3);
+        jkl_handle = obj;
+        jkl_loaded = true;
+    },
+    undefined,
+    function (error) {
+        console.error(error);
+    }
+);
+
+
 // Create the monitor scene
 const monitor_scene = new THREE.Scene();
 monitor_scene.background = bg_tex;
 
+/*
 var logo_group = new THREE.Group();
 var kolmio_loaded = false;
 obj_loader.load('tri.obj',
@@ -286,7 +358,7 @@ obj_loader.load('ytp.obj',
     function (error) {
         console.error(error);
     });
-
+*/
 var pacman_loaded = false;
 var pacman_group = new THREE.Group();
 obj_loader.load('pacman.obj',
@@ -316,8 +388,10 @@ obj_loader.load('pacman.obj',
     });
 
 // LOGO
+/*
 monitor_scene.add(logo_group);
 logo_group.position.y = 0.05;
+*/
 //PACMAN
 monitor_scene.add(pacman_group);
 // MONITOR SCENE LIGHTS
@@ -334,18 +408,20 @@ mon_plane.rotation.x = -90 * dtr;
 mon_plane.scale.set(10, 10);
 mon_plane.position.y = -25;
 monitor_scene.add(mon_plane);
+mon_sce_dir_lig.position.set(-1, 1, 0);
+cam2.rotation.y = -90 * dtr;
 
-var ytp = true;
-var switch_time = 0.0;
 var render = function (time) {
     time = time / 1000;
     requestAnimationFrame(render);
-
+/*
     if (ytp && time - switch_time > 45) {
+
         mon_sce_dir_lig.position.set(-1, 1, 0);
         cam2.rotation.y = -90 * dtr;
         switch_time = time;
         ytp = false;
+
     } else if (!ytp && time - switch_time > 15) {
         mon_sce_dir_lig.position.set(0, 1, 1);
         cam2.rotation.y = 0;
@@ -356,15 +432,43 @@ var render = function (time) {
     if (kolmio_loaded && ytp_texts_loaded) {
         logo_group.rotation.y = -time;
     }
+*/
+
+    if (ytp_loaded) {
+        ytp_handle.position.set(Math.cos(time/4)/5, Math.sin(time/2)/10 + 3.2, 0.3);
+    }
+
+    if (jkl_loaded) {
+        var off = -2.3;
+        jkl_handle.position.set(Math.cos((time + off)/5), Math.sin((time + off)/2)/10 + 2.2, 1.1);
+    }
 
     if (pacman_loaded) {
         pacman_group.rotation.y = -time;
     }
+
+    raycaster.setFromCamera( pointer, camera );
+
+	// calculate objects intersecting the picking ray
+	var intersects = raycaster.intersectObjects( main_scene.children );
+
+    var monitor_found = false;
+	for ( let i = 0; i < intersects.length; i ++ ) {
+        intersects[i].object.traverse(function (child) {
+            if (child == monitor_screen) {
+                monitor_found = true;
+            }
+        })
+        if (monitor_found) break;
+	}
+    if (monitor_found) on_monitor_screen = true;
+    else on_monitor_screen = false;
 
     renderer.setRenderTarget(render_target3D);
     renderer.render(monitor_scene, cam2);
     renderer.setRenderTarget(null);
     renderer.render(main_scene, camera)
 };
-
+window.addEventListener( 'pointermove', onPointerMove );
+window.addEventListener( 'click', onClick );
 render();
