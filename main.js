@@ -36,21 +36,6 @@ const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 var on_monitor_screen = false;
 
-function onPointerMove( event ) {
-	// calculate pointer position in normalized device coordinates
-	// (-1 to +1) for both components
-	pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	pointer.y = -( event.clientY / window.innerHeight ) * 2 + 1;
-}
-
-function onClick (event) {
-    if (event.button == 0) {
-        if (on_monitor_screen) {
-            window.open("https://linkkijkl.fi", '_blank');
-        }
-    }
-}
-
 // The three.js scene
 const main_scene = new THREE.Scene();
 var bg_tex = tex_loader.load('bg.jpg');
@@ -72,7 +57,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // The render target for camera 2, for the monitor screen
-var res = 20;
+var res = 30;
 var render_target3D = new THREE.WebGLRenderTarget(4 * res, 3 * res, {
     magFilter: THREE.NearestFilter,
     minFilter: THREE.NearestFilter
@@ -177,11 +162,12 @@ monitor_group.add(monitor_power_light_L);
 
 // monitor screen materials
 // ytp-texture
+/*
 var jami_tex = tex_loader.load("jami.png");
 var monitor_material1 = new THREE.MeshBasicMaterial({
     map: jami_tex,
 });
-
+*/
 // render target texutre (from cam2)
 var monitor_material3 = new THREE.MeshBasicMaterial({
     map: render_target3D.texture
@@ -200,7 +186,7 @@ monitor_group.add(monitor_screen);
 var monitor_loaded = false;
 obj_loader.load('/monitori.obj',
     function (obj) {
-        var monitor_material = new THREE.MeshPhongMaterial({ 
+        var monitor_material = new THREE.MeshPhongMaterial({
             color: 0xF5F5DC
         });
         obj.traverse(function (child) {
@@ -265,7 +251,7 @@ var ytp_loaded = false;
 var ytp_handle;
 obj_loader.load('atk-ytp.obj',
     function (obj) {
-        var ytp_mat = new THREE.MeshStandardMaterial({ 
+        var ytp_mat = new THREE.MeshStandardMaterial({
             color: 0xeeff44
         });
         obj.traverse(function (child) {
@@ -275,7 +261,7 @@ obj_loader.load('atk-ytp.obj',
             }
         });
         main_scene.add(obj);
-        obj.scale.set(1.5,1.5,0.3);
+        obj.scale.set(1.5, 1.5, 0.3);
         ytp_handle = obj;
         ytp_loaded = true;
     },
@@ -299,7 +285,7 @@ obj_loader.load('jkl.obj',
             }
         });
         main_scene.add(obj);
-        obj.scale.set(0.4,0.4,0.3);
+        obj.scale.set(0.4, 0.4, 0.3);
         jkl_handle = obj;
         jkl_loaded = true;
     },
@@ -387,6 +373,39 @@ obj_loader.load('pacman.obj',
         console.error(error);
     });
 
+var ynna_loaded = false;
+var ynna_handle;
+obj_loader.load('ynna.obj',
+    function (obj) {
+        var ynna_mat = new THREE.MeshStandardMaterial({
+            color: 0x171d40 * 1.2
+        });
+        obj.traverse(function (child) {
+            if (child instanceof THREE.Mesh) {
+                child.material = ynna_mat;
+                child.castShadow = false;
+            }
+        });
+        monitor_scene.add(obj);
+        obj.scale.set(1, 1, 1);
+        obj.position.z = -0.3;
+        ynna_handle = obj;
+        ynna_loaded = true;
+    },
+    undefined,
+    function (error) {
+        console.error(error);
+    }
+);
+
+/*
+var tex_ynna = tex_loader.load("ynna_lapinakyva.webp");
+var ynna_plate = new THREE.Mesh(
+    new THREE.PlaneGeometry(1, 1, 1, 1),
+    new THREE.MeshBasicMaterial({map: tex_ynna})
+);
+ynna_plate.position.z = 0.5;
+*/
 // LOGO
 /*
 monitor_scene.add(logo_group);
@@ -394,6 +413,7 @@ logo_group.position.y = 0.05;
 */
 //PACMAN
 monitor_scene.add(pacman_group);
+// monitor_scene.add(ynna_plate);
 // MONITOR SCENE LIGHTS
 var mon_sce_dir_lig = new THREE.DirectionalLight(0xffffff, 2);
 mon_sce_dir_lig.position.set(0, 1, 1);
@@ -408,59 +428,91 @@ mon_plane.rotation.x = -90 * dtr;
 mon_plane.scale.set(10, 10);
 mon_plane.position.y = -25;
 monitor_scene.add(mon_plane);
+
 mon_sce_dir_lig.position.set(-1, 1, 0);
 cam2.rotation.y = -90 * dtr;
 
+var linkki = true;
+var ynna = false;
+var switch_time = 0.0;
 var render = function (time) {
     time = time / 1000;
     requestAnimationFrame(render);
-/*
-    if (ytp && time - switch_time > 45) {
 
-        mon_sce_dir_lig.position.set(-1, 1, 0);
-        cam2.rotation.y = -90 * dtr;
-        switch_time = time;
-        ytp = false;
+    /*  RUUDUN KOLMIOLOGO
+        if (ytp && time - switch_time > 45) {
+    
+            mon_sce_dir_lig.position.set(-1, 1, 0);
+            cam2.rotation.y = -90 * dtr;
+            switch_time = time;
+            ytp = false;
+    
+        } else if (!ytp && time - switch_time > 15) {
+            mon_sce_dir_lig.position.set(0, 1, 1);
+            cam2.rotation.y = 0;
+            switch_time = time;
+            ytp = true;
+        }
+    
+        if (kolmio_loaded && ytp_texts_loaded) {
+            logo_group.rotation.y = -time;
+        }
+    */
 
-    } else if (!ytp && time - switch_time > 15) {
-        mon_sce_dir_lig.position.set(0, 1, 1);
-        cam2.rotation.y = 0;
-        switch_time = time;
-        ytp = true;
-    }
 
-    if (kolmio_loaded && ytp_texts_loaded) {
-        logo_group.rotation.y = -time;
-    }
-*/
+        if (linkki && time - switch_time > 15) {
+            switch_time = time;
+            linkki = false;
+            console.log("ynnä");
+            mon_sce_dir_lig.position.set(-1, 1, 0);
+            cam2.rotation.y = 0;
+            ynna = true;
+        }
+    
+        if (ynna && time - switch_time > 15) {
+            switch_time = time;
+            ynna = false;
+            console.log("linkki");
+            mon_sce_dir_lig.position.set(-1, 1, 0);
+            cam2.rotation.y = -90 * dtr;
+            linkki = true;
+        }
 
     if (ytp_loaded) {
-        ytp_handle.position.set(Math.cos(time/4)/5, Math.sin(time/2)/10 + 3.2, 0.3);
+        ytp_handle.position.set(Math.cos(time / 4) / 5, Math.sin(time / 2) / 10 + 3.2, 0.3);
+        ytp_handle.scale.z = (Math.sin(time) / 3 + 1)/2;
     }
 
     if (jkl_loaded) {
         var off = -2.3;
-        jkl_handle.position.set(Math.cos((time + off)/5), Math.sin((time + off)/2)/10 + 2.2, 1.1);
+        jkl_handle.position.set(Math.cos((time + off) / 4) / 5 + 1, Math.sin((time + off) / 2) / 10 + 2.2, 1.1);
+        jkl_handle.scale.z = (Math.sin(time + off) / 3 + 1)/3;
     }
 
     if (pacman_loaded) {
         pacman_group.rotation.y = -time;
     }
 
-    raycaster.setFromCamera( pointer, camera );
+    if (ynna_loaded) {
+        ynna_handle.rotation.y = -time;
+    }
+    /*
+        ynna_plate.rotation.y = -time;
+    */
+    raycaster.setFromCamera(pointer, camera);
 
-	// calculate objects intersecting the picking ray
-	var intersects = raycaster.intersectObjects( main_scene.children );
+    // calculate objects intersecting the picking ray
+    var intersects = raycaster.intersectObjects(main_scene.children);
 
     var monitor_found = false;
-	for ( let i = 0; i < intersects.length; i ++ ) {
+    for (let i = 0; i < intersects.length; i++) {
         intersects[i].object.traverse(function (child) {
             if (child == monitor_screen) {
                 monitor_found = true;
             }
         })
         if (monitor_found) break;
-	}
+    }
     if (monitor_found) on_monitor_screen = true;
     else on_monitor_screen = false;
 
@@ -469,6 +521,25 @@ var render = function (time) {
     renderer.setRenderTarget(null);
     renderer.render(main_scene, camera)
 };
-window.addEventListener( 'pointermove', onPointerMove );
-window.addEventListener( 'click', onClick );
+
+function onPointerMove(event) {
+    // calculate pointer position in normalized device coordinates
+    // (-1 to +1) for both components
+    pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+    pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+}
+
+function onClick(event) {
+    if (event.button == 0) {
+        if (on_monitor_screen) {
+            if (linkki)
+                window.open("https://linkkijkl.fi", '_blank');
+            if (ynna)
+                window.open("https://ynna.fi", '_blank');
+        }
+    }
+}
+
+window.addEventListener('pointermove', onPointerMove);
+window.addEventListener('click', onClick);
 render();
