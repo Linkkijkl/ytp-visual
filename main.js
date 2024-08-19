@@ -102,6 +102,7 @@ sphere.setMatrixAt(1, new THREE.Matrix4(1, 0, 0, 4.5, 0, 1, 0, 1, 0, 0, 1, -1, 0
 sphere.setMatrixAt(2, new THREE.Matrix4(1, 0, 0, -6, 0, 1, 0, 1, 0, 0, 1, -2, 0, 0, 0, 1));
 main_scene.add(sphere);
 
+/*
 // Info message plane
 var info_tex = tex_loader.load("info.png");
 var infoamnt = 3;
@@ -118,6 +119,7 @@ for (var i = 0; i < infoamnt; ++i) {
 }
 info.castShadow = true;
 main_scene.add(info);
+*/
 
 // PLANE
 var plane_geometry = new THREE.PlaneGeometry(20, 20, 1, 1);
@@ -199,8 +201,8 @@ obj_loader.load('/monitori.obj',
         monitor_group.add(obj);
         main_scene.add(monitor_group);
 
-        monitor_group.rotation.y = 25 * dtr;
-        monitor_group.position.set(-2, 0, 0);
+        monitor_group.rotation.y = -25 * dtr;
+        monitor_group.position.set(2, 0, 0);
         // monitor_group.rotation.x = 6.5*dtr;
         // monitor_group.position.set(0, 0, -0.5);
         monitor_loaded = true;
@@ -295,7 +297,6 @@ obj_loader.load('jkl.obj',
     }
 );
 
-
 // Create the monitor scene
 const monitor_scene = new THREE.Scene();
 monitor_scene.background = bg_tex;
@@ -360,6 +361,7 @@ obj_loader.load('pacman.obj',
             }
         })
         var pacman = new THREE.Mesh(pacman_geom, pacman_mat);
+        pacman.scale.set(1, 1, -1)
         pacman_group.add(pacman);
         var pacball = new THREE.Mesh(new THREE.SphereGeometry(1, 7, 7), pacman_mat);
         pacball.position.z = 0.5
@@ -479,13 +481,13 @@ var render = function (time) {
         }
 
     if (ytp_loaded) {
-        ytp_handle.position.set(Math.cos(time / 4) / 5, Math.sin(time / 2) / 10 + 3.2, 0.3);
+        ytp_handle.position.set(Math.cos(time / 4) / 5, Math.sin(time / 2) / 10 + 3.4, 0.3);
         ytp_handle.scale.z = (Math.sin(time) / 3 + 1)/2;
     }
 
     if (jkl_loaded) {
         var off = -2.3;
-        jkl_handle.position.set(Math.cos((time + off) / 4) / 5 + 1, Math.sin((time + off) / 2) / 10 + 2.2, 1.1);
+        jkl_handle.position.set(Math.cos((time + off) / 4) / 5 + 1, Math.sin((time + off) / 2) / 10 + 2.4, 1.1);
         jkl_handle.scale.z = (Math.sin(time + off) / 3 + 1)/3;
     }
 
