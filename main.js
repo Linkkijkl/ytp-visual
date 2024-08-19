@@ -377,21 +377,31 @@ obj_loader.load('pacman.obj',
 
 var ynna_loaded = false;
 var ynna_handle;
-obj_loader.load('ynna.obj',
+obj_loader.load('ynna2.obj',
     function (obj) {
         var ynna_mat = new THREE.MeshStandardMaterial({
             color: 0x171d40 * 1.2
         });
+        var ynna_geom;
         obj.traverse(function (child) {
             if (child instanceof THREE.Mesh) {
-                child.material = ynna_mat;
-                child.castShadow = false;
+                ynna_geom = child.geometry;
             }
         });
-        monitor_scene.add(obj);
-        obj.scale.set(1, 1, 1);
-        obj.position.z = -0.3;
-        ynna_handle = obj;
+        var mesh = new THREE.InstancedMesh(ynna_geom, ynna_mat, 2);
+        monitor_scene.add(mesh);
+
+        mesh.setMatrixAt(0, new THREE.Matrix4(  0.1, 0, 0, 0, 
+                                                0, 0.1, 0, 0, 
+                                                0, 0, 0.1, 0,
+                                                0, 0, 0, 1));
+        mesh.setMatrixAt(1, new THREE.Matrix4( -0.1, 0, 0, 0, 
+                                                0, 0.1, 0, 0, 
+                                                0, 0, 0.1, 0,
+                                                0, 0, 0, 1));
+
+        mesh.position.z = -0.3;
+        ynna_handle = mesh;
         ynna_loaded = true;
     },
     undefined,
