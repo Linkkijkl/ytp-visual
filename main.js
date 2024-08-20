@@ -18,14 +18,6 @@ const dtr = pi / 180;
 
 // Aspect ratio
 var aspect = window.innerWidth / window.innerHeight;
-// to use when sceen changes size
-window.addEventListener('resize', resize_callback, false);
-function resize_callback() {
-    aspect = window.innerWidth / window.innerHeight;
-    camera.aspect = aspect;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-}
 
 //Loaders
 const obj_loader = new OBJLoader();
@@ -46,7 +38,6 @@ main_scene.fog = new THREE.Fog(0xff82f9, -4, 29);
 
 // The three.js camera
 const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 100);
-camera.position.z = 4;
 camera.position.y = 2;
 
 // The three.js renderer
@@ -367,7 +358,7 @@ obj_loader.load('pacman.obj',
         pacball.position.z = 0.5
         pacball.scale.set(0.3, 0.3, 0.3);
         pacman_group.add(pacball);
-        pacman_group.position.set(2.5, 0, 2);
+        pacman_group.position.set(2.5, 0, 0);
         pacman_loaded = true;
     },
     undefined,
@@ -380,7 +371,7 @@ var ynna_handle;
 obj_loader.load('ynna2.obj',
     function (obj) {
         var ynna_mat = new THREE.MeshStandardMaterial({
-            color: 0x171d40 * 1.2
+            color: 0x6666ff
         });
         var ynna_geom;
         obj.traverse(function (child) {
@@ -400,7 +391,7 @@ obj_loader.load('ynna2.obj',
                                                 0, 0, 0.1, 0,
                                                 0, 0, 0, 1));
 
-        mesh.position.z = -0.3;
+        mesh.position.z = -2.5;
         ynna_handle = mesh;
         ynna_loaded = true;
     },
@@ -409,6 +400,29 @@ obj_loader.load('ynna2.obj',
         console.error(error);
     }
 );
+
+var pingu_loaded = false;
+var pingu;
+obj_loader.load('pingu.obj',
+    function (obj) {
+        var pingu_mat = new THREE.MeshPhongMaterial({
+            color: 0xaf271d,
+            shininess: 0,
+        });
+        obj.traverse(function (child) {
+            if (child instanceof THREE.Mesh) {
+                child.material = pingu_mat;
+            }
+        })
+        pingu = obj;
+        monitor_scene.add(pingu);
+        pingu.position.set(0, -2, 4.5);
+        pingu_loaded = true;
+    },
+    undefined,
+    function (error) {
+        console.error(error);
+    });
 
 /*
 var tex_ynna = tex_loader.load("ynna_lapinakyva.webp");
@@ -433,7 +447,7 @@ monitor_scene.add(mon_sce_dir_lig);
 var mon_sce_amb_lig = new THREE.AmbientLight(0xD99AF1);
 monitor_scene.add(mon_sce_amb_lig);
 var cam2 = new THREE.PerspectiveCamera(65, 4 / 3, 1, 100);
-cam2.position.set(0, 0, 2);
+cam2.position.set(0, 0, 0);
 // MONITOR SCENE PLANE
 var mon_plane = new THREE.Mesh(plane_geometry, plane_material);
 mon_plane.rotation.x = -90 * dtr;
@@ -444,8 +458,10 @@ monitor_scene.add(mon_plane);
 mon_sce_dir_lig.position.set(-1, 1, 0);
 cam2.rotation.y = -90 * dtr;
 
+resize_callback();
 var linkki = true;
 var ynna = false;
+var dumppi = false;
 var switch_time = 0.0;
 var render = function (time) {
     time = time / 1000;
@@ -471,20 +487,31 @@ var render = function (time) {
         }
     */
 
-
-        if (linkki && time - switch_time > 15) {
+        // 1st
+        if (linkki && time - switch_time > 10) {
             switch_time = time;
             linkki = false;
-            console.log("ynnä");
-            mon_sce_dir_lig.position.set(-1, 1, 0);
+            dumppi = false;
+            mon_sce_dir_lig.position.set(0, 1, 1);
             cam2.rotation.y = 0;
             ynna = true;
         }
     
-        if (ynna && time - switch_time > 15) {
+        // 2nd
+        if (ynna && time - switch_time > 10) {
             switch_time = time;
             ynna = false;
-            console.log("linkki");
+            linkki = false;
+            mon_sce_dir_lig.position.set(0, 1, -1);
+            cam2.rotation.y = -180 * dtr;
+            dumppi = true;
+        }
+
+        // 3rd
+        if (dumppi && time - switch_time > 10) {
+            switch_time = time;
+            dumppi = false;
+            ynna = false;
             mon_sce_dir_lig.position.set(-1, 1, 0);
             cam2.rotation.y = -90 * dtr;
             linkki = true;
@@ -507,6 +534,10 @@ var render = function (time) {
 
     if (ynna_loaded) {
         ynna_handle.rotation.y = -time;
+    }
+
+    if (pingu_loaded) {
+        pingu.rotation.y = -time;
     }
     /*
         ynna_plate.rotation.y = -time;
@@ -548,10 +579,22 @@ function onClick(event) {
                 window.open("https://linkkijkl.fi", '_blank');
             if (ynna)
                 window.open("https://ynna.fi", '_blank');
+            if (dumppi)
+                window.open("https://dumppi.fi", '_blank');
         }
     }
 }
 
+// to use when sceen changes size
+function resize_callback() {
+    aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = aspect;
+    camera.position.z = Math.max((18.13-7*aspect)/1.25, 4);
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+window.addEventListener('resize', resize_callback, false);
 window.addEventListener('pointermove', onPointerMove);
 window.addEventListener('click', onClick);
 render();
