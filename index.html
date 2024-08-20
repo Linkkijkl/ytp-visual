@@ -10,15 +10,31 @@
 			src: url('fonts/MS_Sans_Serif_8pt.ttf');
 		}
 
-		#info {
+		#info-layer-1 {
 			position: absolute;
-			top: 3rem;
-			width: 100%;
 			text-align: center;
-			z-index: 10;
-			display: block;
-			font-family: MSpix;
-			font-size: 3.5vw;
+			bottom: 10rem;
+			right: 10rem;
+			width: 100%;
+			z-index: 2;
+		}
+
+		#info-layer-2 {
+			position: absolute;
+			text-align: center;
+			bottom: 8rem;
+			right: 6rem;
+			width: 100%;
+			z-index: 3;
+		}
+
+		#info-layer-3 {
+			position: absolute;
+			text-align: center;
+			bottom: 6rem;
+			right: 8rem;
+			width: 100%;
+			z-index: 4;
 		}
 
 		body {
@@ -30,6 +46,10 @@
 <body>
 	<!-- src can be switched around to make the visuals different -->
 	<script type="module" src="/main.js"></script>
+	<div id = "info-layer-1"> <img src="info.png"> </div>
+	<div id = "info-layer-2"> <img src="info.png"> </div>
+	<div id = "info-layer-3"> <img src="info.png"> </div>
+	<!--
 	<div id="info" style="color: #000000; margin-left: -0.3rem; margin-top: -0.3rem;"></div>
 	<script>
 		var teksti = document.getElementById("info");
@@ -44,6 +64,7 @@
 			teksti.innerHTML = "ATK-YTP<BR>" + d + " päivää,<BR>" + h + " tuntia,<BR>" + m + " minuuttia,<BR>" + s + " sekuntia.";
 		}, 1000);
 	</script>
+    -->
 </body>
 <video id="video" hidden autoplay loop playsinline muted>
 	<source src="kolmio.webm">
