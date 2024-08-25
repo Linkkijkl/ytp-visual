@@ -34,7 +34,6 @@ var bg_tex = tex_loader.load('bg.jpg');
 bg_tex.minFilter = THREE.NearestFilter;
 bg_tex.maFilter = THREE.NearestFilter;
 main_scene.background = bg_tex;
-main_scene.fog = new THREE.Fog(0xff82f9, -4, 29);
 
 // The three.js camera
 const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 100);
@@ -590,6 +589,10 @@ function resize_callback() {
     aspect = window.innerWidth / window.innerHeight;
     camera.aspect = aspect;
     camera.position.z = Math.max((18.13-7*aspect)/1.25, 4);
+    var campos = camera.position.z;
+    var foga = (-12-campos)/2;
+    var fogb = (172+14.77*campos)/8;
+    main_scene.fog = new THREE.Fog(0xff82f9, foga, fogb);
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
