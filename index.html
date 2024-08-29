@@ -5,47 +5,117 @@
 	<meta charset="utf-8">
 	<title>ATK-YTP 2024</title>
 	<style>
-
-		#info-layer-1 {
-			position: absolute;
-			text-align: center;
-			bottom: 10rem;
-			right: 10rem;
-			width: 100%;
-			z-index: 2;
+		
+		img {
+			display: none;
 		}
 
-		#info-layer-2 {
-			position: absolute;
-			text-align: center;
-			bottom: 8rem;
-			right: 6rem;
-			width: 100%;
-			z-index: 3;
+		@media (min-width: 500px) {
+
+			#info-layer-1-pc {
+				position: absolute;
+				text-align: center;
+				bottom: 10rem;
+				right: 10rem;
+				width: 100%;
+				z-index: 2;
+			}
+
+			#info-layer-1-pc img {
+				display: inline-block
+			}
+
+			#info-layer-2-pc {
+				position: absolute;
+				text-align: center;
+				bottom: 8rem;
+				right: 6rem;
+				width: 100%;
+				z-index: 3;
+			}
+
+			#info-layer-2-pc img {
+				display: inline-block
+			}
+
+			#info-layer-3-pc {
+				position: absolute;
+				text-align: center;
+				bottom: 6rem;
+				right: 8rem;
+				width: 100%;
+				z-index: 4;
+			}
+
+			#info-layer-3-pc img {
+				display: inline-block
+			}
+
 		}
 
-		#info-layer-3 {
-			position: absolute;
-			text-align: center;
-			bottom: 6rem;
-			right: 8rem;
-			width: 100%;
-			z-index: 4;
+		@media only screen and (hover: none) and (pointer: coarse) {
+
+			#info-layer-1-mob {
+				position: absolute;
+				text-align: center;
+				bottom: 17rem;
+				right: 0rem;
+				width: 100%;
+				z-index: 2;
+			}
+
+			#info-layer-1-mob img {
+				display: inline-block
+			}
+	
+			#info-layer-2-mob {
+				position: absolute;
+				text-align: center;
+				bottom: 14rem;
+				right: 2rem;
+				width: 100%;
+				z-index: 3;
+			}
+
+			#info-layer-2-mob img {
+				display: inline-block
+			}
+	
+			#info-layer-3-mob {
+				position: absolute;
+				text-align: center;
+				bottom: 6rem;
+				right: 1rem;
+				width: 100%;
+				z-index: 4;
+			}
+
+			#info-layer-3-mob img {
+				display: inline-block
+			}
+
 		}
+
+
+		
 
 		body {
 			margin: 0;
 		}
-
 	</style>
 </head>
 
 <body>
 	<script type="module" src="/main.js"></script>
-	<div id = "info-layer-1"> <img src="info.png"> </div>
-	<div id = "info-layer-2"> <img src="info.png"> </div>
-	<div id = "info-layer-3"> <img src="info.png"> </div>
-</body>
+	
+	<div id="info-layer-1-pc"> <img src="info.png"> </div>
+	<div id="info-layer-2-pc"> <img src="info.png"> </div>
+	<div id="info-layer-3-pc"> <img src="info.png"> </div>
+	
+	<div id="info-layer-1-mob"> <img src="info2.png"> </div>
+	<div id="info-layer-2-mob"> <img src="info2.png"> </div>
+	<div id="info-layer-3-mob"> <img src="info2.png"> </div>
 
+</body>
 
 </html>

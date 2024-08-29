@@ -94,7 +94,9 @@ main_scene.add(sphere);
 
 /*
 // Info message plane
-var info_tex = tex_loader.load("info.png");
+var info_tex = tex_loader.load("info2.png");
+info_tex.magFilter = THREE.NearestFilter;
+info_tex.minFilter = THREE.NearestFilter;
 var infoamnt = 3;
 var info = new THREE.InstancedMesh(
     new THREE.PlaneGeometry(2.5, 1, 1, 1),
@@ -565,8 +567,6 @@ var render = function (time) {
 };
 
 function onPointerMove(event) {
-    // calculate pointer position in normalized device coordinates
-    // (-1 to +1) for both components
     pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
     pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
@@ -597,7 +597,9 @@ function resize_callback() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-window.addEventListener('resize', resize_callback, false);
+window.onresize = function () {
+    resize_callback();
+}
 window.addEventListener('pointermove', onPointerMove);
 window.addEventListener('click', onClick);
 render();
