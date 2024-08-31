@@ -34,7 +34,6 @@ var bg_tex = tex_loader.load('bg.jpg');
 bg_tex.minFilter = THREE.NearestFilter;
 bg_tex.maFilter = THREE.NearestFilter;
 main_scene.background = bg_tex;
-main_scene.fog = new THREE.Fog(0xff82f9, -4, 29);
 
 // The three.js camera
 const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 100);
@@ -95,7 +94,9 @@ main_scene.add(sphere);
 
 /*
 // Info message plane
-var info_tex = tex_loader.load("info.png");
+var info_tex = tex_loader.load("info2.png");
+info_tex.magFilter = THREE.NearestFilter;
+info_tex.minFilter = THREE.NearestFilter;
 var infoamnt = 3;
 var info = new THREE.InstancedMesh(
     new THREE.PlaneGeometry(2.5, 1, 1, 1),
@@ -566,8 +567,6 @@ var render = function (time) {
 };
 
 function onPointerMove(event) {
-    // calculate pointer position in normalized device coordinates
-    // (-1 to +1) for both components
     pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
     pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
@@ -590,11 +589,17 @@ function resize_callback() {
     aspect = window.innerWidth / window.innerHeight;
     camera.aspect = aspect;
     camera.position.z = Math.max((18.13-7*aspect)/1.25, 4);
+    var campos = camera.position.z;
+    var foga = (-12-campos)/2;
+    var fogb = (172+14.77*campos)/8;
+    main_scene.fog = new THREE.Fog(0xff82f9, foga, fogb);
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-window.addEventListener('resize', resize_callback, false);
+window.onresize = function () {
+    resize_callback();
+}
 window.addEventListener('pointermove', onPointerMove);
 window.addEventListener('click', onClick);
 render();

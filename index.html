@@ -5,33 +5,99 @@
 	<meta charset="utf-8">
 	<title>ATK-YTP 2024</title>
 	<style>
-
-		#info-layer-1 {
-			position: absolute;
-			text-align: center;
-			bottom: 10rem;
-			right: 10rem;
-			width: 100%;
-			z-index: 2;
+		
+		img {
+			display: none;
 		}
 
-		#info-layer-2 {
-			position: absolute;
-			text-align: center;
-			bottom: 8rem;
-			right: 6rem;
-			width: 100%;
-			z-index: 3;
+		@media (min-aspect-ratio: 3/4) {
+
+			#info-layer-1-pc {
+				position: absolute;
+				text-align: center;
+				bottom: 10rem;
+				right: 10rem;
+				width: 100%;
+				z-index: 2;
+			}
+
+			#info-layer-1-pc img {
+				display: inline-block
+			}
+
+			#info-layer-2-pc {
+				position: absolute;
+				text-align: center;
+				bottom: 8rem;
+				right: 6rem;
+				width: 100%;
+				z-index: 3;
+			}
+
+			#info-layer-2-pc img {
+				display: inline-block
+			}
+
+			#info-layer-3-pc {
+				position: absolute;
+				text-align: center;
+				bottom: 6rem;
+				right: 8rem;
+				width: 100%;
+				z-index: 4;
+			}
+
+			#info-layer-3-pc img {
+				display: inline-block
+			}
+
 		}
 
-		#info-layer-3 {
-			position: absolute;
-			text-align: center;
-			bottom: 6rem;
-			right: 8rem;
-			width: 100%;
-			z-index: 4;
+		@media (max-aspect-ratio: 4/3) {
+
+			#info-layer-1-mob {
+				position: absolute;
+				text-align: center;
+				bottom: 17rem;
+				right: 0rem;
+				width: 100%;
+				z-index: 2;
+			}
+
+			#info-layer-1-mob img {
+				display: inline-block
+			}
+	
+			#info-layer-2-mob {
+				position: absolute;
+				text-align: center;
+				bottom: 14rem;
+				right: 2rem;
+				width: 100%;
+				z-index: 3;
+			}
+
+			#info-layer-2-mob img {
+				display: inline-block
+			}
+	
+			#info-layer-3-mob {
+				position: absolute;
+				text-align: center;
+				bottom: 6rem;
+				right: 1rem;
+				width: 100%;
+				z-index: 4;
+			}
+
+			#info-layer-3-mob img {
+				display: inline-block
+			}
+
 		}
+
+
+		
 
 		body {
 			margin: 0;
@@ -40,30 +106,16 @@
 </head>
 
 <body>
-	<!-- src can be switched around to make the visuals different -->
 	<script type="module" src="/main.js"></script>
-	<div id = "info-layer-1"> <img src="info.png"> </div>
-	<div id = "info-layer-2"> <img src="info.png"> </div>
-	<div id = "info-layer-3"> <img src="info.png"> </div>
-	<!--
-	<div id="info" style="color: #000000; margin-left: -0.3rem; margin-top: -0.3rem;"></div>
-	<script>
-		var teksti = document.getElementById("info");
-		var h_hetki = new Date("Oct 16, 2024 12:00:00");
-		var x = setInterval(function () {
-			var nyt = new Date().getTime();
-			var aika = h_hetki - nyt;
-			var d = Math.floor(aika / (1000 * 60 * 60 * 24));
-			var h = Math.floor((aika % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-			var m = Math.floor((aika % (1000 * 60 * 60)) / (1000 * 60));
-			var s = Math.floor((aika % (1000 * 60)) / 1000);
-			teksti.innerHTML = "ATK-YTP<BR>" + d + " päivää,<BR>" + h + " tuntia,<BR>" + m + " minuuttia,<BR>" + s + " sekuntia.";
-		}, 1000);
-	</script>
-    -->
+	
+	<div id="info-layer-1-pc"> <img src="info.png"> </div>
+	<div id="info-layer-2-pc"> <img src="info.png"> </div>
+	<div id="info-layer-3-pc"> <img src="info.png"> </div>
+	
+	<div id="info-layer-1-mob"> <img src="info2.png"> </div>
+	<div id="info-layer-2-mob"> <img src="info2.png"> </div>
+	<div id="info-layer-3-mob"> <img src="info2.png"> </div>
+
 </body>
-<video id="video" hidden autoplay loop playsinline muted>
-	<source src="kolmio.webm">
-</video>
 
 </html>
