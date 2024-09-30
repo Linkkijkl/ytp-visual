@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
 	<title>ATK-YTP 2024</title>
 	<style>
-		
 		img {
 			display: none;
 		}
@@ -13,6 +12,8 @@
 		canvas {
 			position: fixed;
 			z-index: -1;
+			top: 0;
+			left: 0;
 		}
 
 		p {
@@ -20,7 +21,11 @@
 			z-index: 100;
 			padding-left: 1em;
 		}
-		
+
+		.main-content {
+			margin-top: 50%;
+		}
+
 		@media (min-aspect-ratio: 3/4) {
 			#info-layer-1-pc {
 				position: absolute;
@@ -77,7 +82,7 @@
 			#info-layer-1-mob img {
 				display: inline-block
 			}
-	
+
 			#info-layer-2-mob {
 				position: absolute;
 				text-align: center;
@@ -90,7 +95,7 @@
 			#info-layer-2-mob img {
 				display: inline-block
 			}
-	
+
 			#info-layer-3-mob {
 				position: absolute;
 				text-align: center;
@@ -103,13 +108,15 @@
 			#info-layer-3-mob img {
 				display: inline-block
 			}
-
 		}
 
 		body {
 			margin: 0;
 		}
 	</style>
+
+	<link type="text/css" rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link type="text/css" rel="stylesheet" href="node_modules/windows95kit/css/w95.css">
 </head>
 
 <body>
@@ -124,186 +131,67 @@
 		<div id="info-layer-3-mob"> <img src="info2.png"> </div>
 	-->
 	<canvas id="scene"></canvas>
-	<p>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
-		ATK<br>
-		YTP<br>
-		Jyväskylä<br>
+
+	<div id="main-container">
+		<header class="header-global">
+			<nav id="navbar-main"
+				class="navbar d-flex flex-row align-items-center navbar-main navbar-expand-lg navbar-dark justify-content-between">
+				<ul class="navbar-nav navbar-nav-hover flex-row align-items-center">
+					<li class="nav-item">
+						<a href="#info" class="nav-link" role="button">
+							<span class="nav-link-inner-text">Info</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#aikataulu" class="nav-link" role="button">
+							<span class="nav-link-inner-text">Aikataulu</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#kartta" class="nav-link" role="button">
+							<span class="nav-link-inner-text">Kartta</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="yhteistyökumppanit" class="nav-link" role="button">
+							<span class="nav-link-inner-text">Yhteistyökumppanit</span>
+						</a>
+					</li>
+				</ul>
+				<div class="time text-center">
+					<span class="time text-uppercase">1:47 PM</span>
+				</div>
+			</nav>
+		</header>
 		
-	</p>
+		<!-- Spacer -->
+		<div class="min-vh-100"></div>
+
+		<!-- Hero -->
+		<section class="section section-lg overflow-hidden z-2">
+			<div class="container z-2">
+				<div class="row justify-content-center pt-6 pt-md-5 pb-0 mb-2">
+					<div class="col-12 col-xl-7">
+						<div class="card card-tertiary">
+							<div class="card-header text-center">
+								<span>Varoitus!</span>
+							</div>
+							<div class="card-body">
+								<p class="card-text">
+									Yhteistoiminta saattaa aiheuttaa univajetta.<br/>
+									Haluatko jatkaa silti?
+								</p>
+								<div class="text-right">
+									<a href="#" target="_blank" class="btn btn-sm mr-2 btn-primary border-dark"
+										role="button"><span class="btn-text">Joo</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
 </body>
 
 </html>

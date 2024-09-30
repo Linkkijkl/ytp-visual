@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "three": "^0.165.0"
+    "three": "^0.165.0",
+    "windows95kit": "https://github.com/themesberg/windows-95-ui-kit"
   },
   "devDependencies": {
     "vite": "^5.2.13"
