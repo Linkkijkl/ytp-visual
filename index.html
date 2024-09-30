@@ -10,8 +10,18 @@
 			display: none;
 		}
 
-		@media (min-aspect-ratio: 3/4) {
+		canvas {
+			position: fixed;
+			z-index: -1;
+		}
 
+		p {
+			position: absolute;
+			z-index: 100;
+			padding-left: 1em;
+		}
+		
+		@media (min-aspect-ratio: 3/4) {
 			#info-layer-1-pc {
 				position: absolute;
 				text-align: center;
@@ -96,9 +106,6 @@
 
 		}
 
-
-		
-
 		body {
 			margin: 0;
 		}
@@ -107,15 +114,196 @@
 
 <body>
 	<script type="module" src="/main.js"></script>
-	
-	<div id="info-layer-1-pc"> <img src="info.png"> </div>
-	<div id="info-layer-2-pc"> <img src="info.png"> </div>
-	<div id="info-layer-3-pc"> <img src="info.png"> </div>
-	
-	<div id="info-layer-1-mob"> <img src="info2.png"> </div>
-	<div id="info-layer-2-mob"> <img src="info2.png"> </div>
-	<div id="info-layer-3-mob"> <img src="info2.png"> </div>
-
+	<!--
+		<div id="info-layer-1-pc"> <img src="info.png"> </div>
+		<div id="info-layer-2-pc"> <img src="info.png"> </div>
+		<div id="info-layer-3-pc"> <img src="info.png"> </div>
+		
+		<div id="info-layer-1-mob"> <img src="info2.png"> </div>
+		<div id="info-layer-2-mob"> <img src="info2.png"> </div>
+		<div id="info-layer-3-mob"> <img src="info2.png"> </div>
+	-->
+	<canvas id="scene"></canvas>
+	<p>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		ATK<br>
+		YTP<br>
+		Jyväskylä<br>
+		
+	</p>
 </body>
 
 </html>
