@@ -1,0 +1,94 @@
+canvas {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+}
+
+@media (min-aspect-ratio: 3/4) {
+    #info-layer-1-pc {
+        position: absolute;
+        text-align: center;
+        bottom: 10rem;
+        right: 10rem;
+        width: 100%;
+        z-index: 2;
+    }
+
+    #info-layer-1-pc img {
+        display: inline-block
+    }
+
+    #info-layer-2-pc {
+        position: absolute;
+        text-align: center;
+        bottom: 8rem;
+        right: 6rem;
+        width: 100%;
+        z-index: 3;
+    }
+
+    #info-layer-2-pc img {
+        display: inline-block
+    }
+
+    #info-layer-3-pc {
+        position: absolute;
+        text-align: center;
+        bottom: 6rem;
+        right: 8rem;
+        width: 100%;
+        z-index: 4;
+    }
+
+    #info-layer-3-pc img {
+        display: inline-block
+    }
+
+}
+
+@media (max-aspect-ratio: 4/3) {
+
+    #info-layer-1-mob {
+        position: absolute;
+        text-align: center;
+        bottom: 17rem;
+        right: 0rem;
+        width: 100%;
+        z-index: 2;
+    }
+
+    #info-layer-1-mob img {
+        display: inline-block
+    }
+
+    #info-layer-2-mob {
+        position: absolute;
+        text-align: center;
+        bottom: 14rem;
+        right: 2rem;
+        width: 100%;
+        z-index: 3;
+    }
+
+    #info-layer-2-mob img {
+        display: inline-block
+    }
+
+    #info-layer-3-mob {
+        position: absolute;
+        text-align: center;
+        bottom: 6rem;
+        right: 1rem;
+        width: 100%;
+        z-index: 4;
+    }
+
+    #info-layer-3-mob img {
+        display: inline-block
+    }
+}
+
+body {
+    margin: 0;
+}
