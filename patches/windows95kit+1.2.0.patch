@@ -1,0 +1,13 @@
+diff --git a/node_modules/windows95kit/css/w95.css b/node_modules/windows95kit/css/w95.css
+index 1d89a8f..114dcb4 100755
+--- a/node_modules/windows95kit/css/w95.css
++++ b/node_modules/windows95kit/css/w95.css
+@@ -1,7 +1,6 @@
+ @font-face {
+     font-family: 'Windows 95';
+-    src: url('../fonts/w-95-sans-serif.woff2') format('woff2'),
+-        url('../fonts/w-95-sans-serif.woff') format('woff');
++    src: url('../../../fonts/MS_Sans_Serif_8pt.ttf');
+     font-weight: normal;
+     font-style: normal;
+ }

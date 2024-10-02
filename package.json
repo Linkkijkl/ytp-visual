@@ -4,6 +4,10 @@
     "windows95kit": "https://github.com/themesberg/windows-95-ui-kit"
   },
   "devDependencies": {
+    "patch-package": "^8.0.0",
     "vite": "^5.2.13"
+  },
+  "scripts": {
+    "postinstall": "patch-package"
   }
 }
