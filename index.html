@@ -5,25 +5,11 @@
 	<meta charset="utf-8">
 	<title>ATK-YTP 2024</title>
 	<style>
-		img {
-			display: none;
-		}
-
 		canvas {
 			position: fixed;
 			z-index: -1;
 			top: 0;
 			left: 0;
-		}
-
-		p {
-			position: absolute;
-			z-index: 100;
-			padding-left: 1em;
-		}
-
-		.main-content {
-			margin-top: 50%;
 		}
 
 		@media (min-aspect-ratio: 3/4) {
@@ -132,7 +118,7 @@
 	-->
 	<canvas id="scene"></canvas>
 
-	<div id="main-container">
+	<div class="content">
 		<header class="header-global">
 			<nav id="navbar-main"
 				class="navbar d-flex flex-row align-items-center navbar-main navbar-expand-lg navbar-dark justify-content-between">
@@ -163,35 +149,65 @@
 				</div>
 			</nav>
 		</header>
-		
+
 		<!-- Spacer -->
 		<div class="min-vh-100"></div>
 
-		<!-- Hero -->
-		<section class="section section-lg overflow-hidden z-2">
-			<div class="container z-2">
-				<div class="row justify-content-center pt-6 pt-md-5 pb-0 mb-2">
-					<div class="col-12 col-xl-7">
-						<div class="card card-tertiary">
-							<div class="card-header text-center">
-								<span>Varoitus!</span>
-							</div>
-							<div class="card-body">
-								<p class="card-text">
-									Yhteistoiminta saattaa aiheuttaa univajetta.<br/>
-									Haluatko jatkaa silti?
-								</p>
-								<div class="text-right">
-									<a href="#" target="_blank" class="btn btn-sm mr-2 btn-primary border-dark"
-										role="button"><span class="btn-text">Joo</span></a>
+		<div class="container" id="aikataulu">
+			<div class="row justify-content-center ">
+				<div class="col-12">
+					<div class="card card-tertiary">
+						<div class="card-header">
+							Aikataulu
+						</div>
+						<div class="card-body bg-white col-12 mb-4">
+							<div class="container">
+								<div class="row">
+									<div class="col-12 col-sm-6 col-lg-4">
+										<p class="card-text">
+										<h4>
+											Keskiviikko 16.9
+										</h4>
+										9:00 - luennot alkaa<br />
+										21:00 - majoitus aukeaa<br />
+										</p>
+									</div>
+									<div class="col-12 col-sm-6 col-lg-4">
+										<p class="card-text">
+										<h4>
+											Torstai 17.9
+										</h4>
+										9:00 - luennot alkaa<br />
+										21:00 - majoitus aukeaa<br />
+										</p>
+									</div>
+									<div class="col-12 col-sm-6 col-lg-4">
+										<p class="card-text">
+										<h4>
+											Perjantai 18.9
+										</h4>
+										9:00 - majo sulkeutuu, nähdään taas!
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
 	</div>
+
+
+	</section>
+
+	<!-- Core -->
+	<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- pixel JS -->
+	<script src="node_modules/windows95kit/js/w95.js"></script>
 </body>
 
 </html>
