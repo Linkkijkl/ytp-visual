@@ -189,7 +189,7 @@ obj_loader.load('/monitori.obj',
         obj.traverse(function (child) {
             if (child instanceof THREE.Mesh) {
                 child.material = monitor_material;
-                child.castShadow = true;
+                child.castShadow = false;
                 child.receiveShadow = true;
             }
         });
@@ -201,6 +201,7 @@ obj_loader.load('/monitori.obj',
         // monitor_group.rotation.x = 6.5*dtr;
         // monitor_group.position.set(0, 0, -0.5);
         monitor_loaded = true;
+        scroll_callback();
     },
     undefined,
     function (error) {
@@ -223,6 +224,7 @@ obj_loader.load('pylvaes.obj',
         // Add meshes created of the geometry and the material to the column array
         var mesh = new THREE.InstancedMesh(pylvaes_geom, pylvaes_material, 8);
         mesh.receiveShadow = true;
+        mesh.castShadow = true;
         main_scene.add(mesh);
 
         let h = 1.95 * 5 / 4;
@@ -255,13 +257,14 @@ obj_loader.load('atk-ytp.obj',
         obj.traverse(function (child) {
             if (child instanceof THREE.Mesh) {
                 child.material = ytp_mat;
-                child.castShadow = true;
+                child.castShadow = false;
             }
         });
         main_scene.add(obj);
         obj.scale.set(1.5, 1.5, 0.3);
         ytp_handle = obj;
         ytp_loaded = true;
+        scroll_callback();
     },
     undefined,
     function (error) {
@@ -280,13 +283,14 @@ obj_loader.load('jkl.obj',
         obj.traverse(function (child) {
             if (child instanceof THREE.Mesh) {
                 child.material = jkl_mat;
-                child.castShadow = true;
+                child.castShadow = false;
             }
         });
         main_scene.add(obj);
         obj.scale.set(0.4, 0.4, 0.3);
         jkl_handle = obj;
         jkl_loaded = true;
+        scroll_callback();
     },
     undefined,
     function (error) {
@@ -605,17 +609,19 @@ function resize_callback() {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
+function scroll_callback() {
+  if (ytp_loaded && jkl_loaded && monitor_loaded) {
+    ytp_h = window.scrollY/150 + 3.4
+    jkl_h = window.scrollY/150 + 2.4
+    monitor_h = window.scrollY/150
+  }
+}
 
 window.onresize = function () {
     resize_callback();
 }
-window.addEventListener('scroll', (event) => {
-    if(ytp_loaded & jkl_loaded & monitor_loaded) {
-        ytp_h = window.scrollY/150 + 3.4
-        jkl_h = window.scrollY/150 + 2.4
-        monitor_h = window.scrollY/150
-    }
-});
+
+window.addEventListener('scroll', scroll_callback);
 window.addEventListener('pointermove', onPointerMove);
 window.addEventListener('click', onClick);
 render();
