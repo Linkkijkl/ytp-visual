@@ -1,5 +1,12 @@
+
 .content {
-  zoom: 100%;
+  zoom: 135%;
+}
+
+@media (max-aspect-ratio: 2/3) {
+  .content {
+    zoom: 232%;
+  }
 }
 
 canvas {

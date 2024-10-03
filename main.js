@@ -585,6 +585,7 @@ function onPointerMove(event) {
 }
 
 function onClick(event) {
+/*
     if (event.button == 0) {
         if (on_monitor_screen) {
             if (linkki)
@@ -595,6 +596,7 @@ function onClick(event) {
                 window.open("https://dumppi.fi", '_blank');
         }
     }
+*/
 }
 
 // to use when sceen changes size
