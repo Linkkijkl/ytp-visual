@@ -31,3 +31,7 @@ body {
   justify-content: space-between;
   padding: 3px 2px 3px 3px
 }
+
+#map {
+  height: 250px;
+}

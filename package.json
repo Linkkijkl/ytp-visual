@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "98.css": "^0.1.20",
+    "leaflet": "^1.9.4",
     "three": "^0.165.0",
     "windows95kit": "https://github.com/themesberg/windows-95-ui-kit"
   },
