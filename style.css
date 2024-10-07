@@ -35,3 +35,9 @@ body {
 #map {
   height: 250px;
 }
+
+#map button {
+  pointer-events: auto;
+  margin: 2px;
+  min-width: 40px;
+}
