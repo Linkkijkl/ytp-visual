@@ -1,14 +1,33 @@
+
 .content {
-  zoom: 150%;
+  zoom: 135%;
+}
+
+@media (max-aspect-ratio: 2/3) {
+  .content {
+    zoom: 232%;
+  }
+}
+
+.spacer_for_zoom {
+  zoom: 82%;
 }
 
 canvas {
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    left: 0;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
 }
 
 body {
-    margin: 0;
+  margin: 0;
+}
+
+.title-bar-wave {
+  align-items: center;
+  background: linear-gradient(90deg, rgb(234, 72, 255), #1bd4ec);
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 2px 3px 3px
 }

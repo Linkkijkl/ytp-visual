@@ -585,6 +585,7 @@ function onPointerMove(event) {
 }
 
 function onClick(event) {
+/*
     if (event.button == 0) {
         if (on_monitor_screen) {
             if (linkki)
@@ -595,10 +596,12 @@ function onClick(event) {
                 window.open("https://dumppi.fi", '_blank');
         }
     }
+*/
 }
 
 // to use when sceen changes size
 function resize_callback() {
+    window.innerHeight = document.documentElement.clientHeight + 150;
     aspect = window.innerWidth / window.innerHeight;
     camera.aspect = aspect;
     camera.position.z = Math.max((18.13-7*aspect)/1.25, 4);
