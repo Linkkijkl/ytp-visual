@@ -9,6 +9,10 @@
   }
 }
 
+.spacer_for_zoom {
+  zoom: 82%;
+}
+
 canvas {
   position: fixed;
   z-index: -1;
