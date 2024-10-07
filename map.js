@@ -4,12 +4,23 @@ const markers = {
     "Agora" : {
         //"icon": ??
         "pos": [62.23219, 25.73691],
-        "info": "Luennot luennoidaan täällä."
+        "info": "Luennot luennoidaan täällä.<br/>Täällä sijaitsee myös Ravintola Piato."
     },
     "Aalto-sali": {
         "pos": [62.24351, 25.74986],
         "info": "Etkot etkoillaan täällä."
-    }
+    },
+    "Club Escape": {
+        "pos": [62.2437869, 25.7500804],
+        "info": "Ensimmäisen päivän jatkopaikka."
+    },
+    "London": {
+        "pos": [62.2446203, 25.7508283],
+        "info": "Toisen päivän jatkopaikka."
+    },
+    "Ravintola Maija": {
+        "pos": [62.23094, 25.73418]
+    },
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -25,7 +36,11 @@ window.addEventListener("DOMContentLoaded", () => {
     for (markerName of Object.keys(markers)) {
         const marker = markers[markerName];
         const gmapsLink = `https://www.google.com/maps/place/${marker.pos.join(",")}`
-        const info = `${marker.info ? marker.info + "<br/>" : ""}<a href="${gmapsLink}" target="_blank" rel="noopener noreferrer">Google Maps</a>`
+        const info = `
+            <span style="font-weight: bold">${markerName}</span>
+            <br/>
+            ${marker.info ? marker.info + "<br/>" : ""}
+            <a href="${gmapsLink}" target="_blank" rel="noopener noreferrer">Google Maps</a>`
         L.marker(marker.pos, {
             //icon: ??
             title: markerName,
@@ -44,7 +59,7 @@ window.addEventListener("DOMContentLoaded", () => {
             }
 
             locationMarker = L.marker([lat, lng]).addTo(map);
-            locationCircle = L.circle([lat, lng], { radius: accuracy }).addTo(map);
+            locationCircle = L.circle([lat, lng], { radius: accuracy, opacity: 0.1 }).addTo(map);
 
             if (!zoomed) {
                 zoomed = map.fitBounds(locationCircle.getBounds()); 
