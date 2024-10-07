@@ -601,6 +601,7 @@ function onClick(event) {
 
 // to use when sceen changes size
 function resize_callback() {
+    window.innerHeight = document.documentElement.clientHeight + 150;
     aspect = window.innerWidth / window.innerHeight;
     camera.aspect = aspect;
     camera.position.z = Math.max((18.13-7*aspect)/1.25, 4);
