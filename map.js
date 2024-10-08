@@ -33,7 +33,7 @@ const markers = {
         "icon": "/map/majoitus.png"
     },
     "Normaalikoulun majoitus": {
-        "pos": [62.237182, 25.729211],
+        "pos": [62.239680, 25.736241],
         "icon": "/map/majoitus.png"
     }
 }
