@@ -26,8 +26,22 @@ const markers = {
     }
 }
 
+
+const toggleFullscreen = () => {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+    } else {
+        document.querySelector("#kartta .window").requestFullscreen();
+    }
+};
+
+
 window.addEventListener("DOMContentLoaded", () => {
-    const map = L.map("map", { zoomControl: false, zoomAnimation: false, minZoom: 11 })
+    const map = L.map("map", {
+        zoomControl: false,
+        zoomAnimation: false,
+        minZoom: 11,
+    })
         .setView(defaultLocation, defaultZoomLevel);
     let locationMarker, locationCircle, zoomed;
 
@@ -51,7 +65,7 @@ window.addEventListener("DOMContentLoaded", () => {
         L.marker(marker.pos, markerOptions).bindPopup(info).addTo(map);
     }
 
-    document.querySelector("#map button.locate").addEventListener("click", () => {
+    document.querySelector("#kartta button.locate").addEventListener("click", () => {
         navigator.geolocation.watchPosition((pos) => {
             const lat = pos.coords.latitude;
             const lng = pos.coords.longitude;
@@ -73,11 +87,18 @@ window.addEventListener("DOMContentLoaded", () => {
         }, null);
     });
 
-    document.querySelector("#map button.zoom-in").addEventListener("click", () => {
+    document.querySelector("#kartta button.zoom-in").addEventListener("click", () => {
         map.zoomIn(1);
     });
 
-    document.querySelector("#map button.zoom-out").addEventListener("click", () => {
+    document.querySelector("#kartta button.zoom-out").addEventListener("click", () => {
         map.zoomOut(1);
     });
+
+    document.querySelectorAll("#kartta button.maximize")
+        .forEach((e) => {
+            e.addEventListener("click", () => {
+                toggleFullscreen();
+            });
+        });
 });

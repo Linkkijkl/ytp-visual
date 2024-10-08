@@ -16,7 +16,7 @@
 	<script src="map.js"></script>
 	<canvas id="scene"></canvas>
 
-	<div class="content">
+	<div class="zoom">
 		<header class="header-global">
 			<nav id="navbar-main"
 				class="title-bar-wave navbar d-flex flex-row align-items-center navbar-main navbar-expand-lg navbar-dark justify-content-between">
@@ -55,11 +55,11 @@
 	  <div class="min-vh-100"></div>
   </div>
 
-  <div class="content">
+  <div class="zoom">
 		<section class="p-2" id="info">
 			<div class="container">
 				<div class="row justify-content-center">
-		<div class="window" style="width: 550px">
+		<div class="window">
 			<div class="title-bar-wave">
 				<div class="title-bar-text">⚠️ ATK-YTP 2024</div>
 				</div>
@@ -95,7 +95,7 @@
 		<section class="p-2" id="info">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
+					<div class="window">
 						<div class="title-bar-wave">
 							<div class="title-bar-text">Info</div>
 							<div class="title-bar-controls">
@@ -281,7 +281,7 @@
 		<section class="p-2" id="aikataulu">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
+					<div class="window">
 						<div class="title-bar-wave">
 							<div class="title-bar-text">Aikataulu</div>
 							<div class="title-bar-controls">
@@ -420,11 +420,13 @@
 		<section class="p-2" id="kartta">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
+					<div class="window">
 						<div class="title-bar-wave">
 							<div class="title-bar-text">Kartta</div>
 							<div class="title-bar-controls">
-								<button aria-label="Close"></button>
+								<button class="maximize" aria-label="Minimize"></button>
+								<button class="maximize" aria-label="Maximize"></button>
+								<button class="maximize" aria-label="Close"></button>
 							</div>
 						</div>
 						<div class="window-body">
@@ -452,7 +454,7 @@
 		<section class="p-2" id="ukk">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
+					<div class="window">
 						<div class="title-bar-wave">
 							<div class="title-bar-text">Alvariinsa udellut</div>
 							<div class="title-bar-controls">
@@ -551,7 +553,7 @@
 	<section class="p-2" id="yhteistyö">
 		<div class="container">
 			<div class="row justify-content-center">
-				<div class="window" style="width: 550px">
+				<div class="window">
 					<div class="title-bar-wave">
 						<div class="title-bar-text">Yhteystyökumpparit</div>
 						<div class="title-bar-controls">

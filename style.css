@@ -1,10 +1,10 @@
 
-.content {
+div.zoom {
   zoom: 135%;
 }
 
 @media (max-aspect-ratio: 2/3) {
-  .content {
+  div.zoom {
     zoom: 232%;
   }
 }
@@ -32,12 +32,29 @@ body {
   padding: 3px 2px 3px 3px
 }
 
-#map {
-  height: 250px;
-}
-
 #map button {
   pointer-events: auto;
   margin: 2px;
   min-width: 40px;
+}
+
+.window {
+  width: 550px;
+}
+
+#map {
+  height: 400px;
+}
+
+#kartta .window:fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+#kartta .window:fullscreen #map {
+  height: calc(100vh - 320px);
+}
+
+.title-bar-controls button[aria-label="Close"] {
+  margin-left: 0;
 }
