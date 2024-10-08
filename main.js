@@ -579,13 +579,13 @@ var render = function (time) {
     renderer.render(main_scene, camera)
 };
 
+/*
 function onPointerMove(event) {
     pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
     pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
 }
 
 function onClick(event) {
-/*
     if (event.button == 0) {
         if (on_monitor_screen) {
             if (linkki)
@@ -596,8 +596,8 @@ function onClick(event) {
                 window.open("https://dumppi.fi", '_blank');
         }
     }
-*/
 }
+*/
 
 // to use when sceen changes size
 function resize_callback() {
@@ -625,6 +625,6 @@ window.onresize = function () {
 }
 
 window.addEventListener('scroll', scroll_callback);
-window.addEventListener('pointermove', onPointerMove);
-window.addEventListener('click', onClick);
+// window.addEventListener('pointermove', onPointerMove);
+// window.addEventListener('click', onClick);
 render();

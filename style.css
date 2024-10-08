@@ -1,16 +1,9 @@
-
-.content {
-  zoom: 135%;
-}
-
-@media (max-aspect-ratio: 2/3) {
-  .content {
-    zoom: 232%;
-  }
+.kontsa {
+  zoom: 140%;
 }
 
 .spacer_for_zoom {
-  zoom: 82%;
+  zoom: 75%;
 }
 
 canvas {
@@ -30,4 +23,15 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 3px 2px 3px 3px
+}
+
+@media (max-aspect-ratio: 2/3) {
+  .kontsa {
+    zoom: 300%;
+  }
+
+  .spacer_for_zoom {
+    zoom: 70%;
+  }
+
 }
