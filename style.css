@@ -1,15 +1,20 @@
 @font-face {
   font-family: "Pixelated MS Sans Serif";
-  src: url("fonts/MS_Sans_Serif_8pt.ttf");
+  src: url("/fonts/MS_Sans_Serif_8pt.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Pixelated MS Sans Serif";
-  src: url("fonts/MS_Sans_Serif_8pt_bold.ttf");
+  src: url("/fonts/MS_Sans_Serif_8pt_bold.ttf");
   font-weight: bold;
   font-style: normal;
+}
+
+.header-global {
+  font-family: "Pixelated MS Sans Serif";
+  font-size: 11px;
 }
 
 div.zoom {

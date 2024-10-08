@@ -1,2 +1,5 @@
 #ingore node modules
 node_modules/
+
+#ignore built site
+dist/
