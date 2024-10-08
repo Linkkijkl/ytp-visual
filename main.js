@@ -16,6 +16,8 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 const pi = 3.1415;
 const dtr = pi / 180;
 
+const canvas = document.querySelector("#scene");
+
 // Aspect ratio
 var aspect = window.innerWidth / window.innerHeight;
 
@@ -40,7 +42,7 @@ const camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 100);
 camera.position.y = 2;
 
 // The three.js renderer
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer(canvas);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFShadowMap;
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -142,6 +144,7 @@ main_scene.add(plane);
 
 // MONITOR
 var monitor_group = new THREE.Group();
+var monitor_h = 0;
 
 // Monitor power light cube
 var monitor_power_light = new THREE.Mesh(
@@ -186,7 +189,7 @@ obj_loader.load('/monitori.obj',
         obj.traverse(function (child) {
             if (child instanceof THREE.Mesh) {
                 child.material = monitor_material;
-                child.castShadow = true;
+                child.castShadow = false;
                 child.receiveShadow = true;
             }
         });
@@ -198,6 +201,7 @@ obj_loader.load('/monitori.obj',
         // monitor_group.rotation.x = 6.5*dtr;
         // monitor_group.position.set(0, 0, -0.5);
         monitor_loaded = true;
+        scroll_callback();
     },
     undefined,
     function (error) {
@@ -220,6 +224,7 @@ obj_loader.load('pylvaes.obj',
         // Add meshes created of the geometry and the material to the column array
         var mesh = new THREE.InstancedMesh(pylvaes_geom, pylvaes_material, 8);
         mesh.receiveShadow = true;
+        mesh.castShadow = true;
         main_scene.add(mesh);
 
         let h = 1.95 * 5 / 4;
@@ -243,6 +248,7 @@ obj_loader.load('pylvaes.obj',
 
 var ytp_loaded = false;
 var ytp_handle;
+var ytp_h = 3.4;
 obj_loader.load('atk-ytp.obj',
     function (obj) {
         var ytp_mat = new THREE.MeshStandardMaterial({
@@ -251,13 +257,14 @@ obj_loader.load('atk-ytp.obj',
         obj.traverse(function (child) {
             if (child instanceof THREE.Mesh) {
                 child.material = ytp_mat;
-                child.castShadow = true;
+                child.castShadow = false;
             }
         });
         main_scene.add(obj);
         obj.scale.set(1.5, 1.5, 0.3);
         ytp_handle = obj;
         ytp_loaded = true;
+        scroll_callback();
     },
     undefined,
     function (error) {
@@ -267,6 +274,7 @@ obj_loader.load('atk-ytp.obj',
 
 var jkl_loaded = false;
 var jkl_handle;
+var jkl_h = 2.4;
 obj_loader.load('jkl.obj',
     function (obj) {
         var jkl_mat = new THREE.MeshStandardMaterial({
@@ -275,13 +283,14 @@ obj_loader.load('jkl.obj',
         obj.traverse(function (child) {
             if (child instanceof THREE.Mesh) {
                 child.material = jkl_mat;
-                child.castShadow = true;
+                child.castShadow = false;
             }
         });
         main_scene.add(obj);
         obj.scale.set(0.4, 0.4, 0.3);
         jkl_handle = obj;
         jkl_loaded = true;
+        scroll_callback();
     },
     undefined,
     function (error) {
@@ -519,13 +528,13 @@ var render = function (time) {
         }
 
     if (ytp_loaded) {
-        ytp_handle.position.set(Math.cos(time / 4) / 5, Math.sin(time / 2) / 10 + 3.4, 0.3);
+        ytp_handle.position.set(Math.cos(time / 4) / 5, Math.sin(time / 2) / 10 + ytp_h, 0.3);
         ytp_handle.scale.z = (Math.sin(time) / 3 + 1)/2;
     }
 
     if (jkl_loaded) {
         var off = -2.3;
-        jkl_handle.position.set(Math.cos((time + off) / 4) / 5 + 1, Math.sin((time + off) / 2) / 10 + 2.4, 1.1);
+        jkl_handle.position.set(Math.cos((time + off) / 4) / 5 + 1, Math.sin((time + off) / 2) / 10 + jkl_h, 1.1);
         jkl_handle.scale.z = (Math.sin(time + off) / 3 + 1)/3;
     }
 
@@ -539,6 +548,10 @@ var render = function (time) {
 
     if (pingu_loaded) {
         pingu.rotation.y = -time;
+    }
+
+    if (monitor_loaded) {
+        monitor_group.position.y = monitor_h;
     }
     /*
         ynna_plate.rotation.y = -time;
@@ -572,6 +585,7 @@ function onPointerMove(event) {
 }
 
 function onClick(event) {
+/*
     if (event.button == 0) {
         if (on_monitor_screen) {
             if (linkki)
@@ -582,10 +596,12 @@ function onClick(event) {
                 window.open("https://dumppi.fi", '_blank');
         }
     }
+*/
 }
 
 // to use when sceen changes size
 function resize_callback() {
+    window.innerHeight = document.documentElement.clientHeight + 150;
     aspect = window.innerWidth / window.innerHeight;
     camera.aspect = aspect;
     camera.position.z = Math.max((18.13-7*aspect)/1.25, 4);
@@ -596,10 +612,19 @@ function resize_callback() {
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
+function scroll_callback() {
+  if (ytp_loaded && jkl_loaded && monitor_loaded) {
+    ytp_h = window.scrollY/150 + 3.4
+    jkl_h = window.scrollY/150 + 2.4
+    monitor_h = window.scrollY/150
+  }
+}
 
 window.onresize = function () {
     resize_callback();
 }
+
+window.addEventListener('scroll', scroll_callback);
 window.addEventListener('pointermove', onPointerMove);
 window.addEventListener('click', onClick);
 render();

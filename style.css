@@ -1,0 +1,64 @@
+
+div.zoom {
+  zoom: 140%;
+}
+
+.spacer_for_zoom {
+  zoom: 75%;
+}
+
+canvas {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+
+body {
+  margin: 0;
+}
+
+.title-bar-wave {
+  align-items: center;
+  background: linear-gradient(90deg, rgb(234, 72, 255), #1bd4ec);
+  display: flex;
+  justify-content: space-between;
+  padding: 3px 2px 3px 3px
+}
+
+#map button {
+  pointer-events: auto;
+  margin: 2px;
+  min-width: 40px;
+}
+
+.window {
+  width: 550px;
+}
+
+#map {
+  height: 400px;
+}
+
+#kartta .window:fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+#kartta .window:fullscreen #map {
+  height: calc(100vh - 320px);
+}
+
+.title-bar-controls button[aria-label="Close"] {
+  margin-left: 0;
+}
+
+@media (max-aspect-ratio: 2/3) {
+  div.zoom {
+    zoom: 300%;
+  }
+
+  .spacer_for_zoom {
+    zoom: 70%;
+  }
+}
