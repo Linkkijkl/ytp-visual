@@ -64,7 +64,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     L.Marker.prototype.options.icon = L.icon({iconUrl: "/map/default.png", iconSize: [30, 30]})
 
-    for (markerName of Object.keys(markers)) {
+    for (const markerName of Object.keys(markers)) {
         const marker = markers[markerName];
         const gmapsLink = `https://www.google.com/maps/place/${marker.pos.join(",")}`
         const info = `
