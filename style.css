@@ -1,16 +1,10 @@
 
 div.zoom {
-  zoom: 135%;
-}
-
-@media (max-aspect-ratio: 2/3) {
-  div.zoom {
-    zoom: 232%;
-  }
+  zoom: 140%;
 }
 
 .spacer_for_zoom {
-  zoom: 82%;
+  zoom: 75%;
 }
 
 canvas {
@@ -57,4 +51,14 @@ body {
 
 .title-bar-controls button[aria-label="Close"] {
   margin-left: 0;
+}
+
+@media (max-aspect-ratio: 2/3) {
+  div.zoom {
+    zoom: 300%;
+  }
+
+  .spacer_for_zoom {
+    zoom: 70%;
+  }
 }
