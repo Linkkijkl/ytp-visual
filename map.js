@@ -2,9 +2,9 @@ const defaultLocation = [62.23802, 25.74483];
 const defaultZoomLevel = 13;
 const markers = {
     "Agora" : {
-        //"icon": ??
+        "icon": "info.png", //TODO: Change to something more elegant
         "pos": [62.23219, 25.73691],
-        "info": "Luennot luennoidaan täällä.<br/>Täällä sijaitsee myös Ravintola Piato."
+        "info": "Luennot luennoidaan täällä."
     },
     "Aalto-sali": {
         "pos": [62.24351, 25.74986],
@@ -21,6 +21,9 @@ const markers = {
     "Ravintola Maija": {
         "pos": [62.23094, 25.73418]
     },
+    "Ravintola Piato": {
+        "pos": [62.2322793, 25.7374115]
+    }
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -40,11 +43,12 @@ window.addEventListener("DOMContentLoaded", () => {
             <span style="font-weight: bold">${markerName}</span>
             <br/>
             ${marker.info ? marker.info + "<br/>" : ""}
-            <a href="${gmapsLink}" target="_blank" rel="noopener noreferrer">Google Maps</a>`
-        L.marker(marker.pos, {
-            //icon: ??
-            title: markerName,
-        }).bindPopup(info).addTo(map);
+            <a href="${gmapsLink}" target="_blank" rel="noopener noreferrer">Google Maps</a>`;
+        let markerOptions = {"title": markerName};
+        if (marker.icon) {
+            markerOptions["icon"] = L.icon({iconUrl: marker.icon, iconSize: [30, 30]});
+        }
+        L.marker(marker.pos, markerOptions).bindPopup(info).addTo(map);
     }
 
     document.querySelector("#map button.locate").addEventListener("click", () => {
