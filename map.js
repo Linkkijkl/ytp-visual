@@ -2,27 +2,39 @@ const defaultLocation = [62.23802, 25.74483];
 const defaultZoomLevel = 13;
 const markers = {
     "Agora" : {
-        "icon": "info.png", //TODO: Change to something more elegant
         "pos": [62.23219, 25.73691],
         "info": "Luennot luennoidaan täällä."
     },
     "Aalto-sali": {
         "pos": [62.24351, 25.74986],
-        "info": "Etkot etkoillaan täällä."
+        "info": "Etkot etkoillaan täällä.",
+        "icon": "/map/etkot.png"
     },
     "Club Escape": {
         "pos": [62.2437869, 25.7500804],
-        "info": "Ensimmäisen päivän jatkopaikka."
+        "info": "Ensimmäisen päivän jatkopaikka.",
+        "icon": "/map/jatkot.png"
     },
     "London": {
         "pos": [62.2446203, 25.7508283],
-        "info": "Toisen päivän jatkopaikka."
+        "info": "Toisen päivän jatkopaikka.",
+        "icon": "/map/jatkot.png"
     },
     "Ravintola Maija": {
-        "pos": [62.23094, 25.73418]
+        "pos": [62.23094, 25.73418],
+        "icon": "/map/ruoka.png"
     },
     "Ravintola Piato": {
-        "pos": [62.2322793, 25.7374115]
+        "pos": [62.2322793, 25.7374115],
+        "icon": "/map/ruoka.png"
+    },
+    "Kristillisen Koulun majoitus": {
+        "pos": [62.240572, 25.727470],
+        "icon": "/map/majoitus.png"
+    },
+    "Normaalikoulun majoitus": {
+        "pos": [62.237182, 25.729211],
+        "icon": "/map/majoitus.png"
     }
 }
 
@@ -49,6 +61,8 @@ window.addEventListener("DOMContentLoaded", () => {
         maxZoom: 19,
         attribution: '© OpenStreetMap'
     }).addTo(map);
+
+    L.Marker.prototype.options.icon = L.icon({iconUrl: "/map/default.png", iconSize: [30, 30]})
 
     for (markerName of Object.keys(markers)) {
         const marker = markers[markerName];
