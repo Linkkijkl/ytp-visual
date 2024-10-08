@@ -4,6 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>ATK-YTP 2024</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 	<link rel="icon" type="image/x-icon" href="/favicon.svg">
 	<link type="text/css" rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="/style.css">
@@ -16,472 +18,467 @@
 	<script type="module" src="map.js"></script>
 	<canvas id="scene"></canvas>
 
-	<div class="zoom">
-		<header class="header-global">
-			<nav id="navbar-main" class="navbar navbar-expand-lg navbar-light bg-light title-bar-wave">
-				<div class="container-fluid">
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-						data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-						aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-							<li class="nav-item dropdown">
-							<li class="nav-item">
-								<a href="#aikataulu" class="nav-link" role="button">
-									<span class="nav-link-inner-text"><button>Schedule</button></span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#info" class="nav-link" role="button">
-									<span class="nav-link-inner-text"><button>Info</button></span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#kartta" class="nav-link" role="button">
-									<span class="nav-link-inner-text"><button>Map</button></span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#ukk" class="nav-link" role="button">
-									<span class="nav-link-inner-text"><button>FAQ</button></span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#yhteistyö" class="nav-link" role="button">
-									<span class="nav-link-inner-text"><button>Sponsors</button></span>
-								</a>
-							</li>
+	<header class="header-global">
+		<nav id="navbar-main" class="navbar navbar-expand-md navbar-light bg-light title-bar-wave zoom">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item dropdown">
+						<li class="nav-item">
+							<a href="#aikataulu" class="nav-link" role="button">
+								<span class="nav-link-inner-text"><button>Schedule</button></span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#info" class="nav-link" role="button">
+								<span class="nav-link-inner-text"><button>Info</button></span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#kartta" class="nav-link" role="button">
+								<span class="nav-link-inner-text"><button>Map</button></span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#ukk" class="nav-link" role="button">
+								<span class="nav-link-inner-text"><button>FAQ</button></span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#yhteistyö" class="nav-link" role="button">
+								<span class="nav-link-inner-text"><button>Sponsors</button></span>
+							</a>
+						</li>
 
-							</li>
+						</li>
 
-						</ul>
+					</ul>
 
-					</div>
 				</div>
-			</nav>
-		</header>
-	</div>
-	<div class="spacer_for_zoom">
-		<!-- Spacer -->
-		<div class="min-vh-100"></div>
-	</div>
+			</div>
+		</nav>
+	</header>
 
-	<div class="zoom">
-		<section class="p-2" id="intro">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
-						<div class="title-bar-wave">
-							<div class="title-bar-text">⚠️ ATK-YTP 2024</div>
-							<div class="title-bar-controls">
-								<a href="/">
-									<button
-										style="padding-left: 1em; padding-right: 1em; padding-top: 3px; padding-bottom: 3px;">
-										Suomeksi
-									</button>
-								</a>
-							</div>
+	<!-- Spacer -->
+	<div style="height: 80vh"></div>
+
+	<section class="p-2" id="intro">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="window">
+					<div class="title-bar-wave">
+						<div class="title-bar-text">⚠️ ATK-YTP 2024</div>
+						<div class="title-bar-controls">
+							<a href="/">
+								<button
+									style="padding-left: 1em; padding-right: 1em; padding-top: 3px; padding-bottom: 3px;">
+									Suomeksi
+								</button>
+							</a>
 						</div>
-						<div class="window-body">
-							<p>
-							<h3><strong>ATK-YTP</strong> is back!</h3>
-							ATK-YTP, literally translated to “Automatic information processing - co-operation days”,
-							is a two day event that gathers IT-students from 7 university cities together. This year
-							the event is organized in Jyväskylä by
-							<a href="https://linkkijkl.fi"><strong style="color: #035cff">Linkki</strong></a>,
-							<a href="https://dumppi.fi"><strong style="color: #af271d">Dumppi</strong></a> and
-							<a href="https://ynna.fi"><strong style="color: #1d2951">Ynnä</strong></a>.
-							The event is held mostly
-							in Finnish but participating in English is encouraged!
-							</p>
-							<p>
-								Both main days start with seminars where companies give presentations (mostly in
-								Finnish)
-								at the Agora-building. After the seminars participants get to experience Jyväskylä by
-								going
-								around the city to checkpoints where local students and companies have prepared fun
-								group tasks
-								to complete. Teams will get points on how well the task is completed. After completing
-								the
-								checkpoints participants can catch their breath in a preparty right in the middle of
-								Jyväskylä.
-								The winners of the checkpoint-competition are announced at the preparties. The days end
-								in
-								afterparties, almost right next to, and right next to the preparty venue!
-							</p>
-							<p>
-								P.S. TiTOL will also be holding a meeting to determine the board for the year 2025!
-							</p>
-							<p class="text-center">🌴 zyn zyn zyn 🌴</p>
-						</div>
+					</div>
+					<div class="window-body">
+						<p>
+						<h3><strong>ATK-YTP</strong> is back!</h3>
+						ATK-YTP, literally translated to “Automatic information processing - co-operation days”,
+						is a two day event that gathers IT-students from 7 university cities together. This year
+						the event is organized in Jyväskylä by
+						<a href="https://linkkijkl.fi"><strong style="color: #035cff">Linkki</strong></a>,
+						<a href="https://dumppi.fi"><strong style="color: #af271d">Dumppi</strong></a> and
+						<a href="https://ynna.fi"><strong style="color: #1d2951">Ynnä</strong></a>.
+						The event is held mostly
+						in Finnish but participating in English is encouraged!
+						</p>
+						<p>
+							Both main days start with seminars where companies give presentations (mostly in
+							Finnish)
+							at the Agora-building. After the seminars participants get to experience Jyväskylä by
+							going
+							around the city to checkpoints where local students and companies have prepared fun
+							group tasks
+							to complete. Teams will get points on how well the task is completed. After completing
+							the
+							checkpoints participants can catch their breath in a preparty right in the middle of
+							Jyväskylä.
+							The winners of the checkpoint-competition are announced at the preparties. The days end
+							in
+							afterparties, almost right next to, and right next to the preparty venue!
+						</p>
+						<p>
+							P.S. TiTOL will also be holding a meeting to determine the board for the year 2025!
+						</p>
+						<p class="text-center">🌴 zyn zyn zyn 🌴</p>
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<section class="p-2" id="aikataulu">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
-						<div class="title-bar-wave">
-							<div class="title-bar-text">Schedule</div>
-							<div class="title-bar-controls">
-								<button aria-label="Close"></button>
-							</div>
+	<section class="p-2" id="aikataulu">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="window">
+					<div class="title-bar-wave">
+						<div class="title-bar-text">Schedule</div>
+						<div class="title-bar-controls">
+							<button aria-label="Close"></button>
 						</div>
-						<div class="window-body">
-							<div class="container">
-								<div class="row">
-									<div class="col-sm m-0 p-1">
-										<p class="text-center"><strong>Ke 16.10.</strong></p>
-										<hr>
-										<table style="background-color: transparent">
-											<tr>
-												<th>Clock</th>
-												<th>Program</th>
-											</tr>
-											<tr>
-												<td>08:00</td>
-												<td>Accommodation opens</td>
-											</tr>
-											<tr>
-												<td>10:00</td>
-												<td>Accommodation closes</td>
-											</tr>
-											<tr>
-												<td>10:30</td>
-												<td>Organizers, TDK & TiTOL</td>
-											</tr>
-											<tr>
-												<td>12:00</td>
-												<td>Akamon</td>
-											</tr>
-											<tr>
-												<td>13:00</td>
-												<td>Ceili</td>
-											</tr>
-											<tr>
-												<td>13:00</td>
-												<td>TiTOL meeting</td>
-											</tr>
-											<tr>
-												<td>14:00</td>
-												<td>TEK</td>
-											</tr>
-											<tr>
-											<tr>
-												<td>15:30</td>
-												<td>City crawl</td>
-											</tr>
-											<tr>
-												<td>19:00</td>
-												<td>Preparty by TEK</td>
-											</tr>
-											<tr>
-												<td>21:00</td>
-												<td>Accommodation opens</td>
-											</tr>
-											<tr>
-												<td>22:00</td>
-												<td>
-													Afterparty in Club Escape w/ <br>
-													Axel Kala & Pyrythekid
-												</td>
-											</tr>
-										</table>
-									</div>
-									<div class="col-sm m-0 p-1">
-										<p class="text-center"><strong>To 17.10.</strong></p>
-										<hr>
-										<table style="background-color: transparent">
-											<tr>
-												<th>Clock</th>
-												<th>Program</th>
-											</tr>
-											<tr>
-												<td>08:00</td>
-												<td>Morning sauna</td>
-											</tr>
-											<tr>
-												<td>10:00</td>
-												<td>Accommodation closes</td>
-											</tr>
-											<tr>
-												<td>10:30</td>
-												<td>Prof. Teiko Heinosaari</td>
-											</tr>
-											<tr>
-												<td>12:00</td>
-												<td>Lecturer Paavo Nieminen</td>
-											</tr>
-											<tr>
-												<td>13:00</td>
-												<td>Tivia</td>
-											</tr>
-											<tr>
-												<td>14:00</td>
-												<td>Netum</td>
-											</tr>
-											<tr>
-												<td>15:30</td>
-												<td>City crawl</td>
-											</tr>
-											<tr>
-												<td>19:00</td>
-												<td>Preparty</td>
-											</tr>
-											<tr>
-												<td>21:00</td>
-												<td>Accommodation opens</td>
-											</tr>
-											<tr>
-												<td>22:00</td>
-												<td>Afterparty in London</td>
-											</tr>
-										</table>
-									</div>
-									<div class="col-sm m-0 p-1">
-										<p class="text-center"><strong>Pe 18.10.</strong></p>
-										<hr>
-										<table style="background-color: transparent">
-											<tr>
-												<th>Clock</th>
-												<th>Program</th>
-											</tr>
-											<tr>
-												<td>10:00</td>
-												<td>Accommodation closes</td>
-											</tr>
-										</table>
-									</div>
+					</div>
+					<div class="window-body">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm m-0 p-1">
+									<p class="text-center"><strong>Ke 16.10.</strong></p>
+									<hr>
+									<table style="background-color: transparent">
+										<tr>
+											<th>Clock</th>
+											<th>Program</th>
+										</tr>
+										<tr>
+											<td>08:00</td>
+											<td>Accommodation opens</td>
+										</tr>
+										<tr>
+											<td>10:00</td>
+											<td>Accommodation closes</td>
+										</tr>
+										<tr>
+											<td>10:30</td>
+											<td>Organizers, TDK & TiTOL</td>
+										</tr>
+										<tr>
+											<td>12:00</td>
+											<td>Akamon</td>
+										</tr>
+										<tr>
+											<td>13:00</td>
+											<td>Ceili</td>
+										</tr>
+										<tr>
+											<td>13:00</td>
+											<td>TiTOL meeting</td>
+										</tr>
+										<tr>
+											<td>14:00</td>
+											<td>TEK</td>
+										</tr>
+										<tr>
+										<tr>
+											<td>15:30</td>
+											<td>City crawl</td>
+										</tr>
+										<tr>
+											<td>19:00</td>
+											<td>Preparty by TEK</td>
+										</tr>
+										<tr>
+											<td>21:00</td>
+											<td>Accommodation opens</td>
+										</tr>
+										<tr>
+											<td>22:00</td>
+											<td>
+												Afterparty in Club Escape w/ <br>
+												Axel Kala & Pyrythekid
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="col-sm m-0 p-1">
+									<p class="text-center"><strong>To 17.10.</strong></p>
+									<hr>
+									<table style="background-color: transparent">
+										<tr>
+											<th>Clock</th>
+											<th>Program</th>
+										</tr>
+										<tr>
+											<td>08:00</td>
+											<td>Morning sauna</td>
+										</tr>
+										<tr>
+											<td>10:00</td>
+											<td>Accommodation closes</td>
+										</tr>
+										<tr>
+											<td>10:30</td>
+											<td>Prof. Teiko Heinosaari</td>
+										</tr>
+										<tr>
+											<td>12:00</td>
+											<td>Lecturer Paavo Nieminen</td>
+										</tr>
+										<tr>
+											<td>13:00</td>
+											<td>Tivia</td>
+										</tr>
+										<tr>
+											<td>14:00</td>
+											<td>Netum</td>
+										</tr>
+										<tr>
+											<td>15:30</td>
+											<td>City crawl</td>
+										</tr>
+										<tr>
+											<td>19:00</td>
+											<td>Preparty</td>
+										</tr>
+										<tr>
+											<td>21:00</td>
+											<td>Accommodation opens</td>
+										</tr>
+										<tr>
+											<td>22:00</td>
+											<td>Afterparty in London</td>
+										</tr>
+									</table>
+								</div>
+								<div class="col-sm m-0 p-1">
+									<p class="text-center"><strong>Pe 18.10.</strong></p>
+									<hr>
+									<table style="background-color: transparent">
+										<tr>
+											<th>Clock</th>
+											<th>Program</th>
+										</tr>
+										<tr>
+											<td>10:00</td>
+											<td>Accommodation closes</td>
+										</tr>
+									</table>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-		</section>
+			</div>
+	</section>
 
-		<section class="p-2" id="info">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
-						<div class="title-bar-wave">
-							<div class="title-bar-text">Info</div>
-							<div class="title-bar-controls">
-								<button aria-label="Close"></button>
-							</div>
-						</div>
-						<div class="window-body">
-							<p><strong>❔ What to bring with you?</strong></p>
-							<ol type="1">
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="lompakko">
-										<label for="lompakko">Wallet!</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="avaimet">
-										<label for="avaimet">Keys!</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="puhelin">
-										<label for="puhelin">Phone!</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="haalarit">
-										<label for="haalarit">Student overalls!</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="makuupussi">
-										<label for="makuupussi">Something to sleep on!</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="hygienia">
-										<label for="hygienia">Personal hygiene products!
-										</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="uimapuku">
-										<label for="uimapuku">Swimsuit, if you want to visit the sauna!
-										</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="iltasoitto">
-										<label for="iltasoitto">Harjun Iltasoitto -application
-										</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="kolmetoivetta">
-										<label for="kolmetoivetta">3 Toivomusta
-										</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="viissataa">
-										<label for="viissataa">500 Hevosta
-										</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input checked disabled type="checkbox" id="nostalgia">
-										<label for="nostalgia">Feelings of nostalgia</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input checked disabled type="checkbox" id="rakkaus">
-										<label for="rakkaus">
-											<strong style="color: purple">Love for Central Finland ❤️</strong>
-										</label>
-									</div>
-								</li>
-							</ol>
-							<p>
-								Hot tips can be asked in the <strong style="color: rgb(0, 60, 128)">Telegram</strong>
-								group. <br>
-								If you are not in the Telegram group, press "I'm not in the Telegram group" button,
-							</p>
-							<p>
-								<button>I'm not in the Telegram group</button>
-							</p>
-							<p>
-								or contact your student association for the link. (Recommended)
-							</p>
-							<hr>
-							<p>
-								<strong>💤 Accommodation</strong>
-							</p>
-							<p>
-								Participants are accommodated in Jyväskylä Christian School (Butterisland's Street 18)
-								and
-								Jyväskylä Normal School (Yliopistonkatu 1). Student association specific accommodation
-								shall be specified at a
-								later date. It is possible to wash up in the accommodation, and on Thursday morning the
-								<b>quickest</b> of you
-								have the opportunity to go to a unique sauna. Swimsuit is mandatory in the sauna.
-							</p>
-							<hr>
-							<p><strong>🍴 Food</strong></p>
-							<p>
-								You gotta eat so you can drink. Close to the accommodation are student canteens Taide,
-								Lozzi and Ilokivi.
-								During the lectures in Mattilanniemi there's also Piato and Maija.
-							</p>
-							<p>
-								More information about the canteens can be found <a
-									href="https://www.jyu.fi/en/for-students/instructions-for-bachelors-and-masters-students/day-to-day-life-and-free-time/student-restaurants">here
-								</a>.
-							</p>
-							<p>
-								There's also a number of restaurants in the Jyväskylä Center, out of which we can
-								recommend Teerenpeli
-								and their delicious Sulami sandwiches!
-							</p>
-							<hr>
-							<p><strong>🚶 Getting around</strong></p>
-							<p>
-								In general everthing is just a walk away, but if you feel having wheels to go around
-								with
-								is your thing, there's plenty of options. There's buses, taxi and e-scooters lying
-								around.
-								Bus transit is <a href="https://linkki.jyvaskyla.fi/en">Linkki</a>'s (not associated
-								with us)
-								responsibility. You can find the route map on their page.
-							</p>
-							<hr>
-							<p>
-								<strong>👾 City crawl</strong>
-							</p>
-							<p>
-								No ATK-YTP is complete without a city crawl!
-							</p>
-							<p>
-								During the city crawl you'll get to know the city better (and curse its elevation
-								differences) while
-								doing tasks on exciting checkpoints hosted by different companies, student associations
-								and other related groups!
-							</p>
-							<hr>
-							<p><strong>🥤 Preparty</strong></p>
-							<p>
-								On both Wednesday and Thursday theres a preparty in
-								<strong style="color: purple">Aalto-sali</strong>, right in the middle of the city!
-								There's no need for buses! The preparty is BYO-everything.
-							</p>
-							<p>
-								The first preparty is sponsored by our beloved
-								<strong style="color: rgb(0, 60, 128)">TEK</strong>.
-								Thanks <strong style="color: rgb(0, 60, 128)">TEK</strong>!
-							</p>
-							<p>
-								Food and "other necessities" can be purchased from the stores nearbly, e.g. S-Market
-								Kolmikulma
-								is open until 23.00.
-							</p>
-							<hr>
-							<p><strong>✨ Afterparty</strong></p>
-							<p>
-								On Wednesday, the afterparty venue is
-								<strong style="color: purple">Club Escape</strong>,
-								which is just across the street from Aalto-sali, where we'll hear rhymes
-								from the embodiments of Jyväskylä rap, <strong>Axel Kala & Pyrythekid</strong>!
-							</p>
-							<p>
-								On Thursday, the afterparty will be held in
-								<strong style="color: purple">London</strong>, which despite the name is just
-								a little bit further from Club Escape.
-							</p>
+	<section class="p-2" id="info">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="window">
+					<div class="title-bar-wave">
+						<div class="title-bar-text">Info</div>
+						<div class="title-bar-controls">
+							<button aria-label="Close"></button>
 						</div>
 					</div>
+					<div class="window-body">
+						<p><strong>❔ What to bring with you?</strong></p>
+						<ol type="1">
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="lompakko">
+									<label for="lompakko">Wallet!</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="avaimet">
+									<label for="avaimet">Keys!</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="puhelin">
+									<label for="puhelin">Phone!</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="haalarit">
+									<label for="haalarit">Student overalls!</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="makuupussi">
+									<label for="makuupussi">Something to sleep on!</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="hygienia">
+									<label for="hygienia">Personal hygiene products!
+									</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="uimapuku">
+									<label for="uimapuku">Swimsuit, if you want to visit the sauna!
+									</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="iltasoitto">
+									<label for="iltasoitto">Harjun Iltasoitto -application
+									</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="kolmetoivetta">
+									<label for="kolmetoivetta">3 Toivomusta
+									</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="viissataa">
+									<label for="viissataa">500 Hevosta
+									</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input checked disabled type="checkbox" id="nostalgia">
+									<label for="nostalgia">Feelings of nostalgia</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input checked disabled type="checkbox" id="rakkaus">
+									<label for="rakkaus">
+										<strong style="color: purple">Love for Central Finland ❤️</strong>
+									</label>
+								</div>
+							</li>
+						</ol>
+						<p>
+							Hot tips can be asked in the <strong style="color: rgb(0, 60, 128)">Telegram</strong>
+							group. <br>
+							If you are not in the Telegram group, press "I'm not in the Telegram group" button,
+						</p>
+						<p>
+							<button>I'm not in the Telegram group</button>
+						</p>
+						<p>
+							or contact your student association for the link. (Recommended)
+						</p>
+						<hr>
+						<p>
+							<strong>💤 Accommodation</strong>
+						</p>
+						<p>
+							Participants are accommodated in Jyväskylä Christian School (Butterisland's Street 18)
+							and
+							Jyväskylä Normal School (Yliopistonkatu 1). Student association specific accommodation
+							shall be specified at a
+							later date. It is possible to wash up in the accommodation, and on Thursday morning the
+							<b>quickest</b> of you
+							have the opportunity to go to a unique sauna. Swimsuit is mandatory in the sauna.
+						</p>
+						<hr>
+						<p><strong>🍴 Food</strong></p>
+						<p>
+							You gotta eat so you can drink. Close to the accommodation are student canteens Taide,
+							Lozzi and Ilokivi.
+							During the lectures in Mattilanniemi there's also Piato and Maija.
+						</p>
+						<p>
+							More information about the canteens can be found <a
+								href="https://www.jyu.fi/en/for-students/instructions-for-bachelors-and-masters-students/day-to-day-life-and-free-time/student-restaurants">here
+							</a>.
+						</p>
+						<p>
+							There's also a number of restaurants in the Jyväskylä Center, out of which we can
+							recommend Teerenpeli
+							and their delicious Sulami sandwiches!
+						</p>
+						<hr>
+						<p><strong>🚶 Getting around</strong></p>
+						<p>
+							In general everthing is just a walk away, but if you feel having wheels to go around
+							with
+							is your thing, there's plenty of options. There's buses, taxi and e-scooters lying
+							around.
+							Bus transit is <a href="https://linkki.jyvaskyla.fi/en">Linkki</a>'s (not associated
+							with us)
+							responsibility. You can find the route map on their page.
+						</p>
+						<hr>
+						<p>
+							<strong>👾 City crawl</strong>
+						</p>
+						<p>
+							No ATK-YTP is complete without a city crawl!
+						</p>
+						<p>
+							During the city crawl you'll get to know the city better (and curse its elevation
+							differences) while
+							doing tasks on exciting checkpoints hosted by different companies, student associations
+							and other related groups!
+						</p>
+						<hr>
+						<p><strong>🥤 Preparty</strong></p>
+						<p>
+							On both Wednesday and Thursday theres a preparty in
+							<strong style="color: purple">Aalto-sali</strong>, right in the middle of the city!
+							There's no need for buses! The preparty is BYO-everything.
+						</p>
+						<p>
+							The first preparty is sponsored by our beloved
+							<strong style="color: rgb(0, 60, 128)">TEK</strong>.
+							Thanks <strong style="color: rgb(0, 60, 128)">TEK</strong>!
+						</p>
+						<p>
+							Food and "other necessities" can be purchased from the stores nearbly, e.g. S-Market
+							Kolmikulma
+							is open until 23.00.
+						</p>
+						<hr>
+						<p><strong>✨ Afterparty</strong></p>
+						<p>
+							On Wednesday, the afterparty venue is
+							<strong style="color: purple">Club Escape</strong>,
+							which is just across the street from Aalto-sali, where we'll hear rhymes
+							from the embodiments of Jyväskylä rap, <strong>Axel Kala & Pyrythekid</strong>!
+						</p>
+						<p>
+							On Thursday, the afterparty will be held in
+							<strong style="color: purple">London</strong>, which despite the name is just
+							a little bit further from Club Escape.
+						</p>
+					</div>
 				</div>
-				<div>
-		</section>
+			</div>
+			<div>
+	</section>
 
-		<section class="p-2" id="kartta">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="window">
-						<div class="title-bar-wave">
-							<div class="title-bar-text">Kartta</div>
-							<div class="title-bar-controls">
-								<button class="maximize" aria-label="Minimize"></button>
-								<button class="maximize" aria-label="Maximize"></button>
-								<button class="maximize" aria-label="Close"></button>
-							</div>
+	<section class="p-2" id="kartta">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="window">
+					<div class="title-bar-wave">
+						<div class="title-bar-text">Kartta</div>
+						<div class="title-bar-controls">
+							<button class="maximize" aria-label="Minimize"></button>
+							<button class="maximize" aria-label="Maximize"></button>
+							<button class="maximize" aria-label="Close"></button>
 						</div>
-						<div class="window-body">
-							<div id="map">
-								<div class="leaflet-top leaflet-left">
-									<div class="container">
-										<div class="row">
-											<button class="zoom-in">+</button>
-										</div>
-										<div class="row">
-											<button class="zoom-out">-</button>
-										</div>
-										<div class="row">
-											<button class="locate">📍</button>
-										</div>
+					</div>
+					<div class="window-body">
+						<div id="map">
+							<div class="leaflet-top leaflet-left">
+								<div class="container">
+									<div class="row">
+										<button class="zoom-in">+</button>
+									</div>
+									<div class="row">
+										<button class="zoom-out">-</button>
+									</div>
+									<div class="row">
+										<button class="locate">📍</button>
 									</div>
 								</div>
 							</div>
@@ -489,205 +486,205 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<section class="p-2" id="ukk">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
-						<div class="title-bar-wave">
-							<div class="title-bar-text">FAQ</div>
-							<div class="title-bar-controls">
-								<button aria-label="Close"></button>
-							</div>
+	<section class="p-2" id="ukk">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="window">
+					<div class="title-bar-wave">
+						<div class="title-bar-text">FAQ</div>
+						<div class="title-bar-controls">
+							<button aria-label="Close"></button>
 						</div>
-						<div class="window-body">
+					</div>
+					<div class="window-body">
+						<p>
+							<strong>What on earth is going on in Jyväskylä?</strong><br>
+							Click here to answer your burning questions.
+						</p>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Jyväskylä?
+						</button>
+						<div id="collapseOne" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 							<p>
-								<strong>What on earth is going on in Jyväskylä?</strong><br>
-								Click here to answer your burning questions.
+								A beloved child carries many names.
 							</p>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-								Jyväskylä?
-							</button>
-							<div id="collapseOne" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+							<p>
+								Athens of Finland. City of Light. Rap capital of Finland.
+								The Pearl of Central Finland.
+							</p>
+							<p>
+								<i>
+									Tänne, ah, tänne on kaipaus kerta; täällä on
+									kaikki mi kallista on!
+								</i>
+							</p>
+						</div>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							Linkki? Dumppi? Ynnä?
+						</button>
+						<div id="collapseTwo" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
 								<p>
-									A beloved child carries many names.
+									Jyväskylä has a curious triumvirate of TiTOL associations.
 								</p>
 								<p>
-									Athens of Finland. City of Light. Rap capital of Finland.
-									The Pearl of Central Finland.
+									<strong style="color: #035cff">Linkki Jyväskylä ry</strong> are nerds.
 								</p>
+								<!--
 								<p>
-									<i>
-										Tänne, ah, tänne on kaipaus kerta; täällä on
-										kaikki mi kallista on!
-									</i>
+									<strong style="color: #035cff">Linkki Jyväskylä ry</strong> on tietotekniikan,
+									tietojenkäsittelytieteen ja koulutusteknologian pääaine-, sivuaine- sekä
+									jatko-opiskelijoiden ainejärjestö.
 								</p>
+								-->
+								<p>
+									<strong style="color: #af271d">Dumppi ry</strong> are not as nerds.
+								</p>
+								<!--
+								<p>
+									<strong style="color: #af271d">Dumppi ry</strong> on pääaineenaan
+									tietojärjestelmätiedettä, kyberturvallisuutta, kognitiotiedettä sekä
+									turvallisuutta ja strategista analyysia opiskelevien ainejärjestö.
+								</p>
+								-->
+								<p>
+									<strong style="color: #1d2951">Ynnä ry</strong> are math nerds.
+								</p>
+								<!--
+								<p>
+									<strong style="color: #1d2951">Ynnä ry</strong> on fysiikan, matematiikan,
+									tilastotieteen ja tietotekniikan opiskelijoiden ainejärjestö.
+								</p>
+								-->
 							</div>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-								Linkki? Dumppi? Ynnä?
-							</button>
-							<div id="collapseTwo" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-								<div class="accordion-body">
-									<p>
-										Jyväskylä has a curious triumvirate of TiTOL associations.
-									</p>
-									<p>
-										<strong style="color: #035cff">Linkki Jyväskylä ry</strong> are nerds.
-									</p>
-									<!--
-									<p>
-										<strong style="color: #035cff">Linkki Jyväskylä ry</strong> on tietotekniikan,
-										tietojenkäsittelytieteen ja koulutusteknologian pääaine-, sivuaine- sekä
-										jatko-opiskelijoiden ainejärjestö.
-									</p>
-									-->
-									<p>
-										<strong style="color: #af271d">Dumppi ry</strong> are not as nerds.
-									</p>
-									<!--
-									<p>
-										<strong style="color: #af271d">Dumppi ry</strong> on pääaineenaan
-										tietojärjestelmätiedettä, kyberturvallisuutta, kognitiotiedettä sekä
-										turvallisuutta ja strategista analyysia opiskelevien ainejärjestö.
-									</p>
-									-->
-									<p>
-										<strong style="color: #1d2951">Ynnä ry</strong> are math nerds.
-									</p>
-									<!--
-									<p>
-										<strong style="color: #1d2951">Ynnä ry</strong> on fysiikan, matematiikan,
-										tilastotieteen ja tietotekniikan opiskelijoiden ainejärjestö.
-									</p>
-									-->
-								</div>
-							</div>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-								Stickers? -Asterisk
-							</button>
-							<div id="collapseThree" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-								<div class="accordion-body">
-									<p>If you lick them off afterwards.</p>
-								</div>
-							</div>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-								Is drinking alcohol permitted in Agora's lobby?
-							</button>
-							<div id="collapseFour" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-								<div class="accordion-body">
-									<p>No.</p>
-								</div>
-							</div>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapsePetri" aria-expanded="false" aria-controls="collapsePetri">
-								When is Petri show?
-							</button>
-							<div id="collapsePetri" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingPetri" data-bs-parent="#accordionExample">
-								<div class="accordion-body">
-									<p>18.10. Wasa, Energia areena</p>
-								</div>
-							</div>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseKatri" aria-expanded="false" aria-controls="collapseKatri">
-								Where is Catry Helen?
-							</button>
-							<div id="collapseKatri" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingKatri" data-bs-parent="#accordionExample">
-								<div class="accordion-body">
-									<p>In Ascola.</p>
-								</div>
-							</div>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-								Hotel?
-							</button>
-							<div id="collapseFive" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-								<div class="accordion-body">
-									<p>Trivago.</p>
-								</div>
-							</div>
-							<button class="btn-block p-2" type="button">
-								Press here if you feel like it.
-							</button>
 						</div>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							Stickers? -Asterisk
+						</button>
+						<div id="collapseThree" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<p>If you lick them off afterwards.</p>
+							</div>
+						</div>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+							Is drinking alcohol permitted in Agora's lobby?
+						</button>
+						<div id="collapseFour" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<p>No.</p>
+							</div>
+						</div>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapsePetri" aria-expanded="false" aria-controls="collapsePetri">
+							When is Petri show?
+						</button>
+						<div id="collapsePetri" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingPetri" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<p>18.10. Wasa, Energia areena</p>
+							</div>
+						</div>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseKatri" aria-expanded="false" aria-controls="collapseKatri">
+							Where is Catry Helen?
+						</button>
+						<div id="collapseKatri" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingKatri" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<p>In Ascola.</p>
+							</div>
+						</div>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+							Hotel?
+						</button>
+						<div id="collapseFive" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<p>Trivago.</p>
+							</div>
+						</div>
+						<button class="btn-block p-2" type="button">
+							Press here if you feel like it.
+						</button>
 					</div>
 				</div>
 			</div>
+		</div>
 
-		</section>
+	</section>
 
-		<section class="p-2" id="yhteistyö">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
-						<div class="title-bar-wave">
-							<div class="title-bar-text">Sponsors</div>
-							<div class="title-bar-controls">
-								<button aria-label="Close"></button>
-							</div>
+	<section class="p-2" id="yhteistyö">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="window">
+					<div class="title-bar-wave">
+						<div class="title-bar-text">Sponsors</div>
+						<div class="title-bar-controls">
+							<button aria-label="Close"></button>
 						</div>
-						<div class="window-body">
-							<div class="row align-items-center p-2">
-								<div class="col-sm-6">
-									<a href="https://akamon.fi">
-										<img src="/sponsors/akamon.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
-								<div class="col-sm-6">
-									<a href="https://ceili.fi">
-										<img src="/sponsors/ceili.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
-								<div class="col-sm-6">
-									<a href="https://www.teerenpeli.com/fi/Ravintolat/Jyv%C3%A4skyl%C3%A4-Teerenpeli">
-										<img src="/sponsors/teerenpeli.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
-								<div class="col-sm-6">
-									<a href="https://tivia.fi">
-										<img src="/sponsors/tivia.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
-								<div class="col-sm-6">
-									<a href="https://www.tek.fi">
-										<img src="/sponsors/tek.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
-								<div class="col-sm-6">
-									<a href="https://netum.fi">
-										<img src="/sponsors/netum.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
-								<div class="col-sm-6">
-									<a href="https://www.jyu.fi/fi/it">
-										<img src="/sponsors/ittdk.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
+					</div>
+					<div class="window-body">
+						<div class="row align-items-center p-2">
+							<div class="col-sm-6">
+								<a href="https://akamon.fi">
+									<img src="/sponsors/akamon.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a href="https://ceili.fi">
+									<img src="/sponsors/ceili.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a href="https://www.teerenpeli.com/fi/Ravintolat/Jyv%C3%A4skyl%C3%A4-Teerenpeli">
+									<img src="/sponsors/teerenpeli.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a href="https://tivia.fi">
+									<img src="/sponsors/tivia.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a href="https://www.tek.fi">
+									<img src="/sponsors/tek.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a href="https://netum.fi">
+									<img src="/sponsors/netum.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a href="https://www.jyu.fi/fi/it">
+									<img src="/sponsors/ittdk.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
-	</div>
+		</div>
+	</section>
 
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

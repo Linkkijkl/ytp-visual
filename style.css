@@ -1,3 +1,7 @@
+:root {
+  --zoom-level: 1.2;
+}
+
 @font-face {
   font-family: "Pixelated MS Sans Serif";
   src: url("fonts/MS_Sans_Serif_8pt.ttf");
@@ -12,12 +16,8 @@
   font-style: normal;
 }
 
-div.zoom {
+.zoom {
   zoom: 140%;
-}
-
-.spacer_for_zoom {
-  zoom: 78%;
 }
 
 canvas {
@@ -47,31 +47,19 @@ body {
 
 .window {
   width: 550px;
+  zoom: 140%;
 }
 
 #map {
   height: 400px;
-}
-
-#kartta .window:fullscreen {
-  width: 100vw;
-  height: 100vh;
+  zoom: 0.8;
 }
 
 #kartta .window:fullscreen #map {
-  height: calc(100vh - 320px);
+  zoom: 0.8;
+  height: 83vh;
 }
 
 .title-bar-controls button[aria-label="Close"] {
   margin-left: 0;
-}
-
-@media (max-aspect-ratio: 2/3) {
-  div.zoom {
-    zoom: 300%;
-  }
-
-  .spacer_for_zoom {
-    zoom: 70%;
-  }
 }

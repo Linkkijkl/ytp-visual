@@ -4,6 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>ATK-YTP 2024</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 	<link rel="icon" type="image/x-icon" href="/favicon.svg">
 	<link type="text/css" rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link type="text/css" rel="stylesheet" href="/style.css">
@@ -12,484 +14,479 @@
 </head>
 
 <body>
-	<script type="module" src="/main.js"></script>
+	<script type="module" src="main.js"></script>
 	<script type="module" src="map.js"></script>
 	<canvas id="scene"></canvas>
 
-	<div class="zoom">
-		<header class="header-global">
-			<nav id="navbar-main" class="navbar navbar-expand-lg navbar-light bg-light title-bar-wave">
-				<div class="container-fluid">
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-						data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-						aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-							<li class="nav-item dropdown">
-							<li class="nav-item">
-								<a href="#aikataulu" class="nav-link" role="button">
-									<span class="nav-link-inner-text"><button>Aikataulu</button></span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#info" class="nav-link" role="button">
-									<span class="nav-link-inner-text"><button>Info</button></span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#kartta" class="nav-link" role="button">
-									<span class="nav-link-inner-text"><button>Kartta</button></span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#ukk" class="nav-link" role="button">
-									<span class="nav-link-inner-text"><button>UKK</button></span>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="#yhteistyö" class="nav-link" role="button">
-									<span class="nav-link-inner-text"><button>Yhteistyössä</button></span>
-								</a>
-							</li>
-							</li>
-						</ul>
-					</div>
+	<header class="header-global">
+		<nav id="navbar-main" class="navbar navbar-expand-md navbar-light bg-light title-bar-wave zoom">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item dropdown">
+						<li class="nav-item">
+							<a href="#aikataulu" class="nav-link" role="button">
+								<span class="nav-link-inner-text"><button>Aikataulu</button></span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#info" class="nav-link" role="button">
+								<span class="nav-link-inner-text"><button>Info</button></span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#kartta" class="nav-link" role="button">
+								<span class="nav-link-inner-text"><button>Kartta</button></span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#ukk" class="nav-link" role="button">
+								<span class="nav-link-inner-text"><button>UKK</button></span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="#yhteistyö" class="nav-link" role="button">
+								<span class="nav-link-inner-text"><button>Yhteistyössä</button></span>
+							</a>
+						</li>
+						</li>
+					</ul>
 				</div>
-			</nav>
-		</header>
-	</div>
-	<div class="spacer_for_zoom">
-		<!-- Spacer -->
-		<div class="min-vh-100"></div>
-	</div>
+			</div>
+		</nav>
+	</header>
 
-	<div class="zoom">
-		<section class="p-2" id="intro">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
-						<div class="title-bar-wave">
-							<div class="title-bar-text">⚠️ ATK-YTP 2024</div>
-							<div class="title-bar-controls">
-								<a href="/en/">
-									<button
-										style="padding-left: 1em; padding-right: 1em; padding-top: 3px; padding-bottom: 3px;">
-										In English
-									</button>
-								</a>
-							</div>
+	<!-- Spacer -->
+	<div style="height: 80vh"></div>
+
+	<section class="p-2" id="intro">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="window">
+					<div class="title-bar-wave">
+						<div class="title-bar-text">⚠️ ATK-YTP 2024</div>
+						<div class="title-bar-controls">
+							<a href="/en/">
+								<button
+									style="padding-left: 1em; padding-right: 1em; padding-top: 3px; padding-bottom: 3px;">
+									In English
+								</button>
+							</a>
 						</div>
-						<div class="window-body">
-							<p>
-							<h3><strong>ATK-YTP</strong> on palannut!</h3>
-							<p style="font-size: 60%"><s>maista uudet maut</s></p>
-							<p>
-								ATK-yhteistoimintapäivät, lyhyesti ATK-YTP, järjestetään tänä syksynä Jyväskylässä
-								16.10. -
-								18.10.
-								Tämä kaksipäiväinen Tietotekniikan opiskelijoiden liiton (TiTOL) seminaaritapahtuma
-								kokoaa
-								vuosittain
-								yhteen IT-alan opiskelijoita seitsemästä eri yliopistokaupungista. Tämän vuoden ATK-YTP
-								järjestäjinä toimii
-								Jyväskylän TiTOL-järjestöt
-								<a href="https://linkkijkl.fi"><strong style="color: #035cff">Linkki</strong></a>,
-								<a href="https://dumppi.fi"><strong style="color: #af271d">Dumppi</strong></a> sekä
-								<a href="https://ynna.fi"><strong style="color: #1d2951">Ynnä</strong></a>.
-							</p>
-							</p>
-							<p>
-								Yhteistoimintapäivät tarjoavat alan opiskelijoille ympäri Suomen mahdollisuuden tutustua
-								toisiinsa
-								sekä alan yrityksiin hauskalla tavalla. Tapahtumassa alan ammattilaiset pitävät
-								vaikuttavia luentoja
-								kahtena seminaaripäivänä. Luennot järjestetään Jyväskylän yliopiston Agora-rakennuksen
-								pääsalissa
-								(auditorio 1) molempina pääpäivinä. Seminaariosuuksien jälkeen on kumpanakin päivänä
-								luvassa vauhdikasta
-								iltaohjelmaa, kuten rastikierrokset, etkot aivan Jyväskylän keskustassa sekä huikeat
-								jatkot vain amatööri- ja olympiatason
-								kivenheittojen päässä etkopaikasta!
-							</p>
-							<p>
-								P.S. TiTOL pitää tapahtuman aikana syysliittokokouksensa, jossa mm. valitaan hallitus
-								vuodelle 2025!
-							</p>
-							<p class="text-center">🌴 zyn zyn zyn 🌴</p>
-						</div>
+					</div>
+					<div class="window-body">
+						<p>
+						<h3><strong>ATK-YTP</strong> on palannut!</h3>
+						<p style="font-size: 60%"><s>maista uudet maut</s></p>
+						<p>
+							ATK-yhteistoimintapäivät, lyhyesti ATK-YTP, järjestetään tänä syksynä Jyväskylässä
+							16.10. -
+							18.10.
+							Tämä kaksipäiväinen Tietotekniikan opiskelijoiden liiton (TiTOL) seminaaritapahtuma
+							kokoaa
+							vuosittain
+							yhteen IT-alan opiskelijoita seitsemästä eri yliopistokaupungista. Tämän vuoden ATK-YTP
+							järjestäjinä toimii
+							Jyväskylän TiTOL-järjestöt
+							<a href="https://linkkijkl.fi"><strong style="color: #035cff">Linkki</strong></a>,
+							<a href="https://dumppi.fi"><strong style="color: #af271d">Dumppi</strong></a> sekä
+							<a href="https://ynna.fi"><strong style="color: #1d2951">Ynnä</strong></a>.
+						</p>
+						</p>
+						<p>
+							Yhteistoimintapäivät tarjoavat alan opiskelijoille ympäri Suomen mahdollisuuden tutustua
+							toisiinsa
+							sekä alan yrityksiin hauskalla tavalla. Tapahtumassa alan ammattilaiset pitävät
+							vaikuttavia luentoja
+							kahtena seminaaripäivänä. Luennot järjestetään Jyväskylän yliopiston Agora-rakennuksen
+							pääsalissa
+							(auditorio 1) molempina pääpäivinä. Seminaariosuuksien jälkeen on kumpanakin päivänä
+							luvassa vauhdikasta
+							iltaohjelmaa, kuten rastikierrokset, etkot aivan Jyväskylän keskustassa sekä huikeat
+							jatkot vain amatööri- ja olympiatason
+							kivenheittojen päässä etkopaikasta!
+						</p>
+						<p>
+							P.S. TiTOL pitää tapahtuman aikana syysliittokokouksensa, jossa mm. valitaan hallitus
+							vuodelle 2025!
+						</p>
+						<p class="text-center">🌴 zyn zyn zyn 🌴</p>
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<section class="p-2" id="aikataulu">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
-						<div class="title-bar-wave">
-							<div class="title-bar-text">Aikataulu</div>
-							<div class="title-bar-controls">
-								<button aria-label="Close"></button>
-							</div>
+	<section class="p-2" id="aikataulu">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="window">
+					<div class="title-bar-wave">
+						<div class="title-bar-text">Aikataulu</div>
+						<div class="title-bar-controls">
+							<button aria-label="Close"></button>
 						</div>
-						<div class="window-body">
-							<div class="container">
-								<div class="row">
-									<div class="col-sm m-0 p-1">
-										<p class="text-center"><strong>Ke 16.10.</strong></p>
-										<hr>
-										<table style="background-color: transparent">
-											<tr>
-												<th>Klo</th>
-												<th>Ohjelma</th>
-											</tr>
-											<tr>
-												<td>08:00</td>
-												<td>Majoitus aukeaa</td>
-											</tr>
-											<tr>
-												<td>10:00</td>
-												<td>Majoitus sulkeutuu</td>
-											</tr>
-											<tr>
-												<td>10:30</td>
-												<td>Järjestäjät, TDK & TiTOL</td>
-											</tr>
-											<tr>
-												<td>12:00</td>
-												<td>Akamon</td>
-											</tr>
-											<tr>
-												<td>13:00</td>
-												<td>Ceili</td>
-											</tr>
-											<tr>
-												<td>13:00</td>
-												<td>TiTOL liittokokous</td>
-											</tr>
-											<tr>
-												<td>14:00</td>
-												<td>TEK</td>
-											</tr>
-											<tr>
-											<tr>
-												<td>15:30</td>
-												<td>Rastikierros</td>
-											</tr>
-											<tr>
-												<td>19:00</td>
-												<td>Etkot by TEK</td>
-											</tr>
-											<tr>
-												<td>21:00</td>
-												<td>Majoitus aukeaa</td>
-											</tr>
-											<tr>
-												<td>22:00</td>
-												<td>
-													Jatkot Club Escapessa w/ <br>
-													Axel Kala & Pyrythekid
-												</td>
-											</tr>
-										</table>
-									</div>
-									<div class="col-sm m-0 p-1">
-										<p class="text-center"><strong>To 17.10.</strong></p>
-										<hr>
-										<table style="background-color: transparent">
-											<tr>
-												<th>Klo</th>
-												<th>Ohjelma</th>
-											</tr>
-											<tr>
-												<td>08:00</td>
-												<td>Aamusauna</td>
-											</tr>
-											<tr>
-												<td>10:00</td>
-												<td>Majoitus sulkeutuu</td>
-											</tr>
-											<tr>
-												<td>10:30</td>
-												<td>Prof. Teiko Heinosaari</td>
-											</tr>
-											<tr>
-												<td>12:00</td>
-												<td>Lehtori Paavo Nieminen</td>
-											</tr>
-											<tr>
-												<td>13:00</td>
-												<td>Tivia</td>
-											</tr>
-											<tr>
-												<td>14:00</td>
-												<td>Netum</td>
-											</tr>
-											<tr>
-												<td>15:30</td>
-												<td>Rastikierros</td>
-											</tr>
-											<tr>
-												<td>19:00</td>
-												<td>Etkot</td>
-											</tr>
-											<tr>
-												<td>21:00</td>
-												<td>Majoitus aukeaa</td>
-											</tr>
-											<tr>
-												<td>22:00</td>
-												<td>Jatkot Londonissa</td>
-											</tr>
-										</table>
-									</div>
-									<div class="col-sm m-0 p-1">
-										<p class="text-center"><strong>Pe 18.10.</strong></p>
-										<hr>
-										<table style="background-color: transparent">
-											<tr>
-												<th>Klo</th>
-												<th>Ohjelma</th>
-											</tr>
-											<tr>
-												<td>10:00</td>
-												<td>Majoitus sulkeutuu</td>
-											</tr>
-										</table>
-									</div>
+					</div>
+					<div class="window-body">
+						<div class="container">
+							<div class="row">
+								<div class="col-sm m-0 p-1">
+									<p class="text-center"><strong>Ke 16.10.</strong></p>
+									<hr>
+									<table style="background-color: transparent">
+										<tr>
+											<th>Klo</th>
+											<th>Ohjelma</th>
+										</tr>
+										<tr>
+											<td>08:00</td>
+											<td>Majoitus aukeaa</td>
+										</tr>
+										<tr>
+											<td>10:00</td>
+											<td>Majoitus sulkeutuu</td>
+										</tr>
+										<tr>
+											<td>10:30</td>
+											<td>Järjestäjät, TDK & TiTOL</td>
+										</tr>
+										<tr>
+											<td>12:00</td>
+											<td>Akamon</td>
+										</tr>
+										<tr>
+											<td>13:00</td>
+											<td>Ceili</td>
+										</tr>
+										<tr>
+											<td>13:00</td>
+											<td>TiTOL liittokokous</td>
+										</tr>
+										<tr>
+											<td>14:00</td>
+											<td>TEK</td>
+										</tr>
+										<tr>
+										<tr>
+											<td>15:30</td>
+											<td>Rastikierros</td>
+										</tr>
+										<tr>
+											<td>19:00</td>
+											<td>Etkot by TEK</td>
+										</tr>
+										<tr>
+											<td>21:00</td>
+											<td>Majoitus aukeaa</td>
+										</tr>
+										<tr>
+											<td>22:00</td>
+											<td>
+												Jatkot Club Escapessa w/ <br>
+												Axel Kala & Pyrythekid
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div class="col-sm m-0 p-1">
+									<p class="text-center"><strong>To 17.10.</strong></p>
+									<hr>
+									<table style="background-color: transparent">
+										<tr>
+											<th>Klo</th>
+											<th>Ohjelma</th>
+										</tr>
+										<tr>
+											<td>08:00</td>
+											<td>Aamusauna</td>
+										</tr>
+										<tr>
+											<td>10:00</td>
+											<td>Majoitus sulkeutuu</td>
+										</tr>
+										<tr>
+											<td>10:30</td>
+											<td>Prof. Teiko Heinosaari</td>
+										</tr>
+										<tr>
+											<td>12:00</td>
+											<td>Lehtori Paavo Nieminen</td>
+										</tr>
+										<tr>
+											<td>13:00</td>
+											<td>Tivia</td>
+										</tr>
+										<tr>
+											<td>14:00</td>
+											<td>Netum</td>
+										</tr>
+										<tr>
+											<td>15:30</td>
+											<td>Rastikierros</td>
+										</tr>
+										<tr>
+											<td>19:00</td>
+											<td>Etkot</td>
+										</tr>
+										<tr>
+											<td>21:00</td>
+											<td>Majoitus aukeaa</td>
+										</tr>
+										<tr>
+											<td>22:00</td>
+											<td>Jatkot Londonissa</td>
+										</tr>
+									</table>
+								</div>
+								<div class="col-sm m-0 p-1">
+									<p class="text-center"><strong>Pe 18.10.</strong></p>
+									<hr>
+									<table style="background-color: transparent">
+										<tr>
+											<th>Klo</th>
+											<th>Ohjelma</th>
+										</tr>
+										<tr>
+											<td>10:00</td>
+											<td>Majoitus sulkeutuu</td>
+										</tr>
+									</table>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-		</section>
+			</div>
+	</section>
 
-		<section class="p-2" id="info">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
-						<div class="title-bar-wave">
-							<div class="title-bar-text">Info</div>
-							<div class="title-bar-controls">
-								<button aria-label="Close"></button>
-							</div>
-						</div>
-						<div class="window-body">
-							<p><strong>❔ Mitä mukaan?</strong></p>
-							<ol type="1">
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="lompakko">
-										<label for="lompakko">Lompakko!</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="avaimet">
-										<label for="avaimet">Avaimet!</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="puhelin">
-										<label for="puhelin">Puhelin!</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="haalarit">
-										<label for="haalarit">Opiskelijahaalarit!</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="makuupussi">
-										<label for="makuupussi">Makuualusta ja/tai -pussi!</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="hygienia">
-										<label for="hygienia">Hygieniatarvikkeet!
-										</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="uimapuku">
-										<label for="uimapuku">Uimapuku, jos saunaan mielesi tekevi!
-										</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="iltasoitto">
-										<label for="iltasoitto">Harjun Iltasoitto -sovellus
-										</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="kolmetoivetta">
-										<label for="kolmetoivetta">3 Toivomusta
-										</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input type="checkbox" id="viissataa">
-										<label for="viissataa">500 Hevosta
-										</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input checked disabled type="checkbox" id="nostalgia">
-										<label for="nostalgia">Nostalgian tunnetta</label>
-									</div>
-								</li>
-								<li class="p-1">
-									<div class="field-row">
-										<input checked disabled type="checkbox" id="rakkaus">
-										<label for="rakkaus">
-											<strong style="color: purple">Rakkautta Keski-Suomelle ❤️</strong>
-										</label>
-									</div>
-								</li>
-							</ol>
-							<p>
-								Kuumia matkatipsejä voit kysellä myös <strong
-									style="color: rgb(0, 60, 128)">Telegram-ryhmän</strong> puolella. <br>
-								Jos et ole Telegram-ryhmässä, paina "En ole Telegram-ryhmässä"-näppäintä,
-							</p>
-							<p>
-								<button>En ole Telegram-ryhmässä</button>
-							</p>
-							<p>
-								tai ota yhteyttä yhteyttä omaan ainejärjestöösi saadaksesi sinne linkin. (Suositeltu)
-							</p>
-							<hr>
-							<p>
-								<strong>💤 Majoitus</strong>
-							</p>
-							<p>
-								Yhteistoimintapäiville saapuville on tarjolla koulumajoitus Jyväskylän kristillisellä
-								koululla (Voionmaankatu 18)
-								sekä Jyväskylän Normaalikoulun yläaste-lukiolla (Yliopistonkatu 1).
-								Ainejärjestökohtaiset majoittumiset täsmentyvät
-								jahka tässä asiaan tulee selkeyttä. Majoituksessa on mahdollisuus peseytyä ja
-								torstaiaamuna <b>nopeimmat</b> pääsevät uniikkiin aamusaunaan.
-								Saunassa on oltava uimapuku päällä.
-							</p>
-							<hr>
-							<p><strong>🍴 Ruoka</strong></p>
-							<p>
-								Pitää syödä, jotta jaksaa juoda. Majoitusta lähellä palvelee etenkin Seminaarinmäen
-								opiskelijaravintolat Taide, Lozzi ja Ilokivi ja luentojen aikana Mattilanniemen
-								opiskelijaravintolat Piato sekä Maija. Maijasta saa todella hyvää yrttilevitettä
-								leivälleen.
-							</p>
-							<p>
-								Kampusravintoloista löydät infoa täältä: <a
-									href="https://www.jyu.fi/fi/opiskelijalle/kandi-ja-maisteriopiskelijan-ohjeet/opiskelijan-arki-ja-vapaa-aika/opiskelijaravintolat">Jyväskylän
-									opiskelijaravintolat
-								</a>
-							</p>
-							<p>
-								Jyväskylän keskustasta löytyy myös useita ruokapaikkoja, joista voimme suositella
-								erityisesti Teerenpeliä sekä
-								heidän suussasulavia Sulami-jättikerrosleipiä.
-							</p>
-							<hr>
-							<p><strong>🚶 Liikkuminen</strong></p>
-							<p>
-								Jos Oulu tai Kuopio kauhistutti; ei hätää! Jyväskylässä kaikki on lähellä. Kampuksen,
-								majoituksen ja keskustan välejä mennään ylä- tai alamäkeen suunnasta riippuen, mutta
-								kyllä käpistelijänkin jalat kantaa.
-							</p>
-							<p>
-								Yleisesti kaikki tapahtumapaikat sijaitsevat kävelymatkan päässä, mutta tarvittaessa
-								siirtymiä voi hoitaa myös bussilla, taksilla tai pitkin kadunvarsia lojuvilla
-								skuuteilla. Bussiliikenteestä vastaa <a href="https://linkki.jyvaskyla.fi/">Linkki</a>
-								(ei se ainejärjestö).
-								Sivuilta löytyy myös reittiopas.
-							</p>
-							<hr>
-							<p>
-								<strong>👾 Rastikierrokset</strong>
-							</p>
-							<p>
-								Ei yhteistoimintaa ilman rastikierroksia!
-							</p>
-							<p>
-								Rastikierroksella pääsee tutustumaan Jyväskylään (ja kiroamaan sen mäkiä) kiertämällä
-								yritysten, Jyväskylän ainejärjestöjen
-								ja muiden toimijoiden jännittäviä rasteja!
-							</p>
-							<hr>
-							<p><strong>🥤 Etkot</strong></p>
-							<p>Sekä keskiviikkona että torstaina järjestetään yhteiset etkot
-								<strong style="color: purple">Aalto-salissa</strong> aivan Jyväskylän keskustassa! <br>
-								Alvar Aalto -arkkitehtimies-fanit saavat ihastella ja ihastuttaahan se tietty myös
-								vaikka
-								Aalto-salin palladiolainen paraati-ikkuna ja muut. <br>
-								Jyväskylän tiivis kaupunkirakenne säästää meidät puuduttavilta bussikyydityksiltä.
-								Etkoilla toimitaan OPM-periaattein eli omat juomat ja eväät matkaan!
-							</p>
-							<p>
-								Ensimmäisen illan etkoja tukee kaikille tuttu ja rakas
-								<strong style="color: rgb(0, 60, 128)">TEK</strong>. Kiitos <strong
-									style="color: rgb(0, 60, 128)">TEK</strong>!
-							</p>
-							<p>
-								Etkoherkut saat helposti useista lähiympäristön kaupoista. Läheinen S-Market Kolmikulma
-								palvelee klo 23.00 asti.
-							</p>
-							<hr>
-							<p><strong>✨ Jatkot</strong></p>
-							<p>
-								Keskiviikkona jatkot tarjoaa Aalto-salia vastapäätä sijaitseva
-								<strong style="color: purple">Club Escape</strong>, jossa biletunnelmaan pääsee
-								Jyväskyläläisen räpin ruumiillistumien,
-								<strong>Axel Kalan & Pyrythekidin</strong> riimien saattelemana!
-							</p>
-							<p>
-								Torstaina jatkot järjestetään vain pari askelta kauempana sijaitsevassa yökerho <strong
-									style="color: purple">Londonissa</strong>.
-							</p>
+	<section class="p-2" id="info">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="window">
+					<div class="title-bar-wave">
+						<div class="title-bar-text">Info</div>
+						<div class="title-bar-controls">
+							<button aria-label="Close"></button>
 						</div>
 					</div>
+					<div class="window-body">
+						<p><strong>❔ Mitä mukaan?</strong></p>
+						<ol type="1">
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="lompakko">
+									<label for="lompakko">Lompakko!</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="avaimet">
+									<label for="avaimet">Avaimet!</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="puhelin">
+									<label for="puhelin">Puhelin!</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="haalarit">
+									<label for="haalarit">Opiskelijahaalarit!</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="makuupussi">
+									<label for="makuupussi">Makuualusta ja/tai -pussi!</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="hygienia">
+									<label for="hygienia">Hygieniatarvikkeet!
+									</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="uimapuku">
+									<label for="uimapuku">Uimapuku, jos saunaan mielesi tekevi!
+									</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="iltasoitto">
+									<label for="iltasoitto">Harjun Iltasoitto -sovellus
+									</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="kolmetoivetta">
+									<label for="kolmetoivetta">3 Toivomusta
+									</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input type="checkbox" id="viissataa">
+									<label for="viissataa">500 Hevosta
+									</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input checked disabled type="checkbox" id="nostalgia">
+									<label for="nostalgia">Nostalgian tunnetta</label>
+								</div>
+							</li>
+							<li class="p-1">
+								<div class="field-row">
+									<input checked disabled type="checkbox" id="rakkaus">
+									<label for="rakkaus">
+										<strong style="color: purple">Rakkautta Keski-Suomelle ❤️</strong>
+									</label>
+								</div>
+							</li>
+						</ol>
+						<p>
+							Kuumia matkatipsejä voit kysellä myös <strong
+								style="color: rgb(0, 60, 128)">Telegram-ryhmän</strong> puolella. <br>
+							Jos et ole Telegram-ryhmässä, paina "En ole Telegram-ryhmässä"-näppäintä,
+						</p>
+						<p>
+							<button>En ole Telegram-ryhmässä</button>
+						</p>
+						<p>
+							tai ota yhteyttä yhteyttä omaan ainejärjestöösi saadaksesi sinne linkin. (Suositeltu)
+						</p>
+						<hr>
+						<p>
+							<strong>💤 Majoitus</strong>
+						</p>
+						<p>
+							Yhteistoimintapäiville saapuville on tarjolla koulumajoitus Jyväskylän kristillisellä
+							koululla (Voionmaankatu 18)
+							sekä Jyväskylän Normaalikoulun yläaste-lukiolla (Yliopistonkatu 1).
+							Ainejärjestökohtaiset majoittumiset täsmentyvät
+							jahka tässä asiaan tulee selkeyttä. Majoituksessa on mahdollisuus peseytyä ja
+							torstaiaamuna <b>nopeimmat</b> pääsevät uniikkiin aamusaunaan.
+							Saunassa on oltava uimapuku päällä.
+						</p>
+						<hr>
+						<p><strong>🍴 Ruoka</strong></p>
+						<p>
+							Pitää syödä, jotta jaksaa juoda. Majoitusta lähellä palvelee etenkin Seminaarinmäen
+							opiskelijaravintolat Taide, Lozzi ja Ilokivi ja luentojen aikana Mattilanniemen
+							opiskelijaravintolat Piato sekä Maija. Maijasta saa todella hyvää yrttilevitettä
+							leivälleen.
+						</p>
+						<p>
+							Kampusravintoloista löydät infoa täältä: <a
+								href="https://www.jyu.fi/fi/opiskelijalle/kandi-ja-maisteriopiskelijan-ohjeet/opiskelijan-arki-ja-vapaa-aika/opiskelijaravintolat">Jyväskylän
+								opiskelijaravintolat
+							</a>
+						</p>
+						<p>
+							Jyväskylän keskustasta löytyy myös useita ruokapaikkoja, joista voimme suositella
+							erityisesti Teerenpeliä sekä
+							heidän suussasulavia Sulami-jättikerrosleipiä.
+						</p>
+						<hr>
+						<p><strong>🚶 Liikkuminen</strong></p>
+						<p>
+							Jos Oulu tai Kuopio kauhistutti; ei hätää! Jyväskylässä kaikki on lähellä. Kampuksen,
+							majoituksen ja keskustan välejä mennään ylä- tai alamäkeen suunnasta riippuen, mutta
+							kyllä käpistelijänkin jalat kantaa.
+						</p>
+						<p>
+							Yleisesti kaikki tapahtumapaikat sijaitsevat kävelymatkan päässä, mutta tarvittaessa
+							siirtymiä voi hoitaa myös bussilla, taksilla tai pitkin kadunvarsia lojuvilla
+							skuuteilla. Bussiliikenteestä vastaa <a href="https://linkki.jyvaskyla.fi/">Linkki</a>
+							(ei se ainejärjestö).
+							Sivuilta löytyy myös reittiopas.
+						</p>
+						<hr>
+						<p>
+							<strong>👾 Rastikierrokset</strong>
+						</p>
+						<p>
+							Ei yhteistoimintaa ilman rastikierroksia!
+						</p>
+						<p>
+							Rastikierroksella pääsee tutustumaan Jyväskylään (ja kiroamaan sen mäkiä) kiertämällä
+							yritysten, Jyväskylän ainejärjestöjen
+							ja muiden toimijoiden jännittäviä rasteja!
+						</p>
+						<hr>
+						<p><strong>🥤 Etkot</strong></p>
+						<p>Sekä keskiviikkona että torstaina järjestetään yhteiset etkot
+							<strong style="color: purple">Aalto-salissa</strong> aivan Jyväskylän keskustassa! <br>
+							Alvar Aalto -arkkitehtimies-fanit saavat ihastella ja ihastuttaahan se tietty myös
+							vaikka
+							Aalto-salin palladiolainen paraati-ikkuna ja muut. <br>
+							Jyväskylän tiivis kaupunkirakenne säästää meidät puuduttavilta bussikyydityksiltä.
+							Etkoilla toimitaan OPM-periaattein eli omat juomat ja eväät matkaan!
+						</p>
+						<p>
+							Ensimmäisen illan etkoja tukee kaikille tuttu ja rakas
+							<strong style="color: rgb(0, 60, 128)">TEK</strong>. Kiitos <strong
+								style="color: rgb(0, 60, 128)">TEK</strong>!
+						</p>
+						<p>
+							Etkoherkut saat helposti useista lähiympäristön kaupoista. Läheinen S-Market Kolmikulma
+							palvelee klo 23.00 asti.
+						</p>
+						<hr>
+						<p><strong>✨ Jatkot</strong></p>
+						<p>
+							Keskiviikkona jatkot tarjoaa Aalto-salia vastapäätä sijaitseva
+							<strong style="color: purple">Club Escape</strong>, jossa biletunnelmaan pääsee
+							Jyväskyläläisen räpin ruumiillistumien,
+							<strong>Axel Kalan & Pyrythekidin</strong> riimien saattelemana!
+						</p>
+						<p>
+							Torstaina jatkot järjestetään vain pari askelta kauempana sijaitsevassa yökerho <strong
+								style="color: purple">Londonissa</strong>.
+						</p>
+					</div>
 				</div>
-				<div>
-		</section>
+			</div>
+			<div>
+	</section>
 
-		<section class="p-2" id="kartta">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="window">
-						<div class="title-bar-wave">
-							<div class="title-bar-text">Kartta</div>
-							<div class="title-bar-controls">
-								<button class="maximize" aria-label="Minimize"></button>
-								<button class="maximize" aria-label="Maximize"></button>
-								<button class="maximize" aria-label="Close"></button>
-							</div>
+	<section class="p-2" id="kartta">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="window">
+					<div class="title-bar-wave">
+						<div class="title-bar-text">Kartta</div>
+						<div class="title-bar-controls">
+							<button class="maximize" aria-label="Minimize"></button>
+							<button class="maximize" aria-label="Maximize"></button>
+							<button class="maximize" aria-label="Close"></button>
 						</div>
-						<div class="window-body">
-							<div id="map">
-								<div class="leaflet-top leaflet-left">
-									<div class="container">
-										<div class="row">
-											<button class="zoom-in">+</button>
-										</div>
-										<div class="row">
-											<button class="zoom-out">-</button>
-										</div>
-										<div class="row">
-											<button class="locate">📍</button>
-										</div>
+					</div>
+					<div class="window-body">
+						<div id="map">
+							<div class="leaflet-top leaflet-left">
+								<div class="container">
+									<div class="row">
+										<button class="zoom-in zoom">+</button>
+									</div>
+									<div class="row">
+										<button class="zoom-out zoom">-</button>
+									</div>
+									<div class="row">
+										<button class="locate zoom">📍</button>
 									</div>
 								</div>
 							</div>
@@ -497,191 +494,191 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
+	</section>
 
-		<section class="p-2" id="ukk">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
-						<div class="title-bar-wave">
-							<div class="title-bar-text">Alvariinsa udellut</div>
-							<div class="title-bar-controls">
-								<button aria-label="Close"></button>
-							</div>
+	<section class="p-2" id="ukk">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="window">
+					<div class="title-bar-wave">
+						<div class="title-bar-text">Alvariinsa udellut</div>
+						<div class="title-bar-controls">
+							<button aria-label="Close"></button>
 						</div>
-						<div class="window-body">
+					</div>
+					<div class="window-body">
+						<p>
+							<strong>Mitä ehmettiä täällä oikein tapahtuu?</strong><br>
+							No klikkaileppa tästä vastauksia polttavimpiin kysymyksiin.
+						</p>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							Jyväskylä?
+						</button>
+						<div id="collapseOne" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 							<p>
-								<strong>Mitä ehmettiä täällä oikein tapahtuu?</strong><br>
-								No klikkaileppa tästä vastauksia polttavimpiin kysymyksiin.
+								Rakkaalla lapsella on monta nimeä.
 							</p>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-								Jyväskylä?
-							</button>
-							<div id="collapseOne" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+							<p>
+								Suomen Ateena. Valon kaupunki. Suomen rap-pääkaupunki.
+								Keski-Suomen helmi.
+							</p>
+							<p>
+								<i>
+									Tänne, ah, tänne on kaipaus kerta; täällä on
+									kaikki mi kallista on!
+								</i>
+							</p>
+						</div>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							Linkki? Dumppi? Ynnä?
+						</button>
+						<div id="collapseTwo" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
 								<p>
-									Rakkaalla lapsella on monta nimeä.
+									Jyväskylässä vallitsee jännittävä ja poikkeuksellinen TiTOL-järjestöjen
+									triumviraatti.
 								</p>
 								<p>
-									Suomen Ateena. Valon kaupunki. Suomen rap-pääkaupunki.
-									Keski-Suomen helmi.
+									<strong style="color: #035cff">Linkki Jyväskylä ry</strong> on tietotekniikan,
+									tietojenkäsittelytieteen ja koulutusteknologian pääaine-, sivuaine- sekä
+									jatko-opiskelijoiden ainejärjestö.
 								</p>
 								<p>
-									<i>
-										Tänne, ah, tänne on kaipaus kerta; täällä on
-										kaikki mi kallista on!
-									</i>
+									<strong style="color: #af271d">Dumppi ry</strong> on pääaineenaan
+									tietojärjestelmätiedettä, kyberturvallisuutta, kognitiotiedettä sekä
+									turvallisuutta ja strategista analyysia opiskelevien ainejärjestö.
+								</p>
+								<p>
+									<strong style="color: #1d2951">Ynnä ry</strong> on fysiikan, matematiikan,
+									tilastotieteen ja tietotekniikan opiskelijoiden ainejärjestö.
 								</p>
 							</div>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-								Linkki? Dumppi? Ynnä?
-							</button>
-							<div id="collapseTwo" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-								<div class="accordion-body">
-									<p>
-										Jyväskylässä vallitsee jännittävä ja poikkeuksellinen TiTOL-järjestöjen
-										triumviraatti.
-									</p>
-									<p>
-										<strong style="color: #035cff">Linkki Jyväskylä ry</strong> on tietotekniikan,
-										tietojenkäsittelytieteen ja koulutusteknologian pääaine-, sivuaine- sekä
-										jatko-opiskelijoiden ainejärjestö.
-									</p>
-									<p>
-										<strong style="color: #af271d">Dumppi ry</strong> on pääaineenaan
-										tietojärjestelmätiedettä, kyberturvallisuutta, kognitiotiedettä sekä
-										turvallisuutta ja strategista analyysia opiskelevien ainejärjestö.
-									</p>
-									<p>
-										<strong style="color: #1d2951">Ynnä ry</strong> on fysiikan, matematiikan,
-										tilastotieteen ja tietotekniikan opiskelijoiden ainejärjestö.
-									</p>
-								</div>
-							</div>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-								Tarroja? t. Asterisk
-							</button>
-							<div id="collapseThree" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-								<div class="accordion-body">
-									<p>Jos nuolette irti.</p>
-								</div>
-							</div>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-								Saako Agoran (Mattilanniemi 2) aulassa juoda alkoholia?
-							</button>
-							<div id="collapseFour" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-								<div class="accordion-body">
-									<p>Ei.</p>
-								</div>
-							</div>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapsePetri" aria-expanded="false" aria-controls="collapsePetri">
-								Milloin Petri esiintyy?
-							</button>
-							<div id="collapsePetri" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingPetri" data-bs-parent="#accordionExample">
-								<div class="accordion-body">
-									<p>18.10. Vaasa, Energia areena</p>
-								</div>
-							</div>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseKatri" aria-expanded="false" aria-controls="collapseKatri">
-								Missä Katri Helena?
-							</button>
-							<div id="collapseKatri" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingKatri" data-bs-parent="#accordionExample">
-								<div class="accordion-body">
-									<p>Askolassa.</p>
-								</div>
-							</div>
-							<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
-								data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-								Hotelli?
-							</button>
-							<div id="collapseFive" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
-								aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-								<div class="accordion-body">
-									<p>Trivago.</p>
-								</div>
-							</div>
-							<button class="btn-block p-2" type="button">
-								Paina tästä jos siltä tuntuu.
-							</button>
 						</div>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							Tarroja? t. Asterisk
+						</button>
+						<div id="collapseThree" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<p>Jos nuolette irti.</p>
+							</div>
+						</div>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+							Saako Agoran (Mattilanniemi 2) aulassa juoda alkoholia?
+						</button>
+						<div id="collapseFour" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<p>Ei.</p>
+							</div>
+						</div>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapsePetri" aria-expanded="false" aria-controls="collapsePetri">
+							Milloin Petri esiintyy?
+						</button>
+						<div id="collapsePetri" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingPetri" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<p>18.10. Vaasa, Energia areena</p>
+							</div>
+						</div>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseKatri" aria-expanded="false" aria-controls="collapseKatri">
+							Missä Katri Helena?
+						</button>
+						<div id="collapseKatri" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingKatri" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<p>Askolassa.</p>
+							</div>
+						</div>
+						<button class="btn-block p-2" type="button" data-bs-toggle="collapse"
+							data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+							Hotelli?
+						</button>
+						<div id="collapseFive" class="accordion-collapse collapse d-grid gap-2 p-2 mx-auto"
+							aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<p>Trivago.</p>
+							</div>
+						</div>
+						<button class="btn-block p-2" type="button">
+							Paina tästä jos siltä tuntuu.
+						</button>
 					</div>
 				</div>
 			</div>
+		</div>
 
-		</section>
+	</section>
 
-		<section class="p-2" id="yhteistyö">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="window" style="width: 550px">
-						<div class="title-bar-wave">
-							<div class="title-bar-text">Yhteistyökumppanit</div>
-							<div class="title-bar-controls">
-								<button aria-label="Close"></button>
-							</div>
+	<section class="p-2" id="yhteistyö">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="window">
+					<div class="title-bar-wave">
+						<div class="title-bar-text">Yhteistyökumppanit</div>
+						<div class="title-bar-controls">
+							<button aria-label="Close"></button>
 						</div>
-						<div class="window-body">
-							<div class="row align-items-center p-2">
-								<div class="col-sm-6">
-									<a href="https://akamon.fi">
-										<img src="sponsors/akamon.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
-								<div class="col-sm-6">
-									<a href="https://ceili.fi">
-										<img src="sponsors/ceili.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
-								<div class="col-sm-6">
-									<a href="https://www.teerenpeli.com/fi/Ravintolat/Jyv%C3%A4skyl%C3%A4-Teerenpeli">
-										<img src="sponsors/teerenpeli.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
-								<div class="col-sm-6">
-									<a href="https://tivia.fi">
-										<img src="sponsors/tivia.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
-								<div class="col-sm-6">
-									<a href="https://www.tek.fi">
-										<img src="sponsors/tek.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
-								<div class="col-sm-6">
-									<a href="https://netum.fi">
-										<img src="sponsors/netum.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
-								<div class="col-sm-6">
-									<a href="https://www.jyu.fi/fi/it">
-										<img src="sponsors/ittdk.png" class="img-thumbnail"
-											style="background-color: transparent; border: none"></img>
-									</a>
-								</div>
+					</div>
+					<div class="window-body">
+						<div class="row align-items-center p-2">
+							<div class="col-sm-6">
+								<a href="https://akamon.fi">
+									<img src="sponsors/akamon.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a href="https://ceili.fi">
+									<img src="sponsors/ceili.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a href="https://www.teerenpeli.com/fi/Ravintolat/Jyv%C3%A4skyl%C3%A4-Teerenpeli">
+									<img src="sponsors/teerenpeli.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a href="https://tivia.fi">
+									<img src="sponsors/tivia.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a href="https://www.tek.fi">
+									<img src="sponsors/tek.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a href="https://netum.fi">
+									<img src="sponsors/netum.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
+							</div>
+							<div class="col-sm-6">
+								<a href="https://www.jyu.fi/fi/it">
+									<img src="sponsors/ittdk.png" class="img-thumbnail"
+										style="background-color: transparent; border: none"></img>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
-	</div>
+		</div>
+	</section>
 
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
 		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
