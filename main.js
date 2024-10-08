@@ -32,7 +32,7 @@ var on_monitor_screen = false;
 
 // The three.js scene
 const main_scene = new THREE.Scene();
-var bg_tex = tex_loader.load('bg.jpg');
+var bg_tex = tex_loader.load('/bg.jpg');
 bg_tex.minFilter = THREE.NearestFilter;
 bg_tex.maFilter = THREE.NearestFilter;
 main_scene.background = bg_tex;
@@ -210,7 +210,7 @@ obj_loader.load('/monitori.obj',
 
 // List of columns
 var pylvaes_loaded = false;
-obj_loader.load('pylvaes.obj',
+obj_loader.load('/pylvaes.obj',
     function (obj) {
         // Simple marble colour. Could use a texture.
         var pylvaes_material = new THREE.MeshPhongMaterial({ color: 0xe3e0cd });
@@ -249,7 +249,7 @@ obj_loader.load('pylvaes.obj',
 var ytp_loaded = false;
 var ytp_handle;
 var ytp_h = 3.4;
-obj_loader.load('atk-ytp.obj',
+obj_loader.load('/atk-ytp.obj',
     function (obj) {
         var ytp_mat = new THREE.MeshStandardMaterial({
             color: 0xeeff44
@@ -275,7 +275,7 @@ obj_loader.load('atk-ytp.obj',
 var jkl_loaded = false;
 var jkl_handle;
 var jkl_h = 2.4;
-obj_loader.load('jkl.obj',
+obj_loader.load('/jkl.obj',
     function (obj) {
         var jkl_mat = new THREE.MeshStandardMaterial({
             color: 0xffaa22,
@@ -349,7 +349,7 @@ obj_loader.load('ytp.obj',
 */
 var pacman_loaded = false;
 var pacman_group = new THREE.Group();
-obj_loader.load('pacman.obj',
+obj_loader.load('/pacman.obj',
     function (obj) {
         var pacman_geom;
         var pacman_mat = new THREE.MeshPhongMaterial({
@@ -378,7 +378,7 @@ obj_loader.load('pacman.obj',
 
 var ynna_loaded = false;
 var ynna_handle;
-obj_loader.load('ynna2.obj',
+obj_loader.load('/ynna2.obj',
     function (obj) {
         var ynna_mat = new THREE.MeshStandardMaterial({
             color: 0x6666ff
@@ -413,7 +413,7 @@ obj_loader.load('ynna2.obj',
 
 var pingu_loaded = false;
 var pingu;
-obj_loader.load('pingu.obj',
+obj_loader.load('/pingu.obj',
     function (obj) {
         var pingu_mat = new THREE.MeshPhongMaterial({
             color: 0xaf271d,

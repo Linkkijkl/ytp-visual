@@ -1,10 +1,23 @@
+@font-face {
+  font-family: "Pixelated MS Sans Serif";
+  src: url("fonts/MS_Sans_Serif_8pt.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pixelated MS Sans Serif";
+  src: url("fonts/MS_Sans_Serif_8pt_bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
 
 div.zoom {
   zoom: 140%;
 }
 
 .spacer_for_zoom {
-  zoom: 75%;
+  zoom: 78%;
 }
 
 canvas {
