@@ -5,6 +5,10 @@ const markers = {
         "pos": [62.23219, 25.73691],
         "info": "Lectures are here."
     },
+    "MaA 103" : {
+        "pos": [62.23100, 25.73350],
+        "info": "Lectures are also here."
+    },
     "Aalto-sali": {
         "pos": [62.24351, 25.74986],
         "info": "Preparty is here.",
