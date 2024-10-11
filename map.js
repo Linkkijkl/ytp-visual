@@ -7,7 +7,7 @@ const markers = {
     },
     "MaA 103" : {
         "pos": [62.23100, 25.73350],
-        "info": "Luennot luennoidaan myös täällä."
+        "info": "Luennot striimataan tänne."
     },
     "Aalto-sali": {
         "pos": [62.24351, 25.74986],
