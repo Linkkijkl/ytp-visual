@@ -208,6 +208,70 @@ obj_loader.load('/monitori.obj',
         console.error(error);
     });
 
+var sammack_group = new THREE.Group();
+
+var sammack_eye = new THREE.InstancedMesh(
+    new THREE.SphereGeometry(1, 16, 16),
+    new THREE.MeshPhongMaterial({
+        color: 0x000000,
+        shininess: 100,
+    }), 2);
+sammack_eye.setMatrixAt(0, new THREE.Matrix4(0.1, 0, 0, -0.4, 0, 0.1, 0, 1, 0, 0, 0.1, -0.6, 0, 0, 0, 1));
+sammack_eye.setMatrixAt(1, new THREE.Matrix4(0.1, 0, 0, 0.4, 0, 0.1, 0, 1, 0, 0, 0.1, -0.6, 0, 0, 0, 1));
+sammack_group.add(sammack_eye);
+
+var sammack_poles = new THREE.InstancedMesh(
+    new THREE.BoxGeometry(0.15, 8, 0.15),
+    new THREE.MeshPhongMaterial({
+        color: 0x777777,
+        shininess: 100,
+    }), 2);
+sammack_poles.setMatrixAt(0, new THREE.Matrix4(
+    1, 0, 0, 1.8,
+    0, 1, 0, 0,
+    0, 0, 1, -0.75,
+    0, 0, 0, 1,
+));
+sammack_poles.setMatrixAt(1, new THREE.Matrix4(
+    1, 0, 0, -1.8,
+    0, 1, 0, 0,
+    0, 0, 1, -0.75,
+    0, 0, 0, 1,
+));
+
+sammack_group.add(sammack_poles);
+
+var sammack_cylt = new THREE.Mesh(new THREE.PlaneGeometry(5.6/1.2, 1/1.2, 1), new THREE.MeshPhongMaterial({map: tex_loader.load('tampere.png')}));
+sammack_cylt.rotation.set(0, 180*dtr, 0);
+sammack_cylt.position.set(0.0, 4, -0.85);
+sammack_group.add(sammack_cylt);
+
+var sammack_loaded = false;
+var sammack_body;
+obj_loader.load('/sammack.obj',
+    function (obj) {
+        var sammack_mat = new THREE.MeshStandardMaterial({
+            color: 0x00FF00,
+        });
+        obj.traverse(function (child) {
+            if (child instanceof THREE.Mesh) {
+                child.material = sammack_mat;
+            }
+        });
+        sammack_group.add(obj);
+        sammack_body = obj;
+        main_scene.add(sammack_group);
+        sammack_group.scale.set(0.5, 0.5, 0.5);
+        sammack_group.position.set(-2, 0, -3);
+        sammack_group.rotation.set(0, 200*dtr, 0);
+        sammack_loaded = true;
+    },
+    undefined,
+    function (error) {
+        console.error(error);
+    }
+);
+
 // List of columns
 var pylvaes_loaded = false;
 obj_loader.load('/pylvaes.obj',
@@ -473,6 +537,7 @@ var linkki = true;
 var ynna = false;
 var dumppi = false;
 var switch_time = 0.0;
+var sammack_s = 1.0;
 var render = function (time) {
     time = time / 1000;
     requestAnimationFrame(render);
@@ -552,6 +617,12 @@ var render = function (time) {
 
     if (monitor_loaded) {
         monitor_group.position.y = monitor_h;
+    }
+
+    if (sammack_loaded) {
+        sammack_s = Math.sin(4*time)*Math.sin(8*time)/3 + 1;
+        sammack_body.scale.set(1, sammack_s, 1);
+        sammack_eye.scale.set(1, sammack_s, 1);
     }
     /*
         ynna_plate.rotation.y = -time;
