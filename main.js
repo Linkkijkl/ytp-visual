@@ -241,7 +241,7 @@ sammack_poles.setMatrixAt(1, new THREE.Matrix4(
 
 sammack_group.add(sammack_poles);
 
-var sammack_cylt = new THREE.Mesh(new THREE.PlaneGeometry(5.6/1.2, 1/1.2, 1), new THREE.MeshPhongMaterial({map: tex_loader.load('tampere.png')}));
+var sammack_cylt = new THREE.Mesh(new THREE.PlaneGeometry(5.6/1.2, 1/1.2, 1), new THREE.MeshPhongMaterial({map: tex_loader.load('/tampere.png')}));
 sammack_cylt.rotation.set(0, 180*dtr, 0);
 sammack_cylt.position.set(0.0, 4, -0.85);
 sammack_group.add(sammack_cylt);
